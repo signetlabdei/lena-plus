@@ -1,0 +1,85 @@
+/**
+	* Set the name of the file where rach preamble rx will be logged.  
+	* @param the name of the file where rach preamble rx will be logged
+	*/
+	void SetPreambleRxFilename (std::string outputFilename);
+
+	/**
+	* Set the name of the file where rach preamble correct receptions or collisions will be logged.  
+	* @param the name of the file where rach preamble correct receptions or collisions will be logged
+	*/
+	void SetPreambleCollisionsFilename (std::string outputFilename);
+
+	/**
+	* Set the name of the file where msg3 tx will be logged.  
+	* @param the name of the file where rach preamble rx will be logged
+	*/
+	void SetMsg3TxFilename (std::string outputFilename);
+
+	/**
+	* Set the name of the file where msg3 rx will be logged, with collision or correct.  
+	* @param the name of the file where msg3 rx will be logged
+	*/
+	void SetMsg3RxFilename (std::string outputFilename);	
+
+	/**
+	* Set the name of the file where msg4 rx will be logged, with collision or correct.  
+	* @param the name of the file where msg4 rx will be logged
+	*/
+	void SetMsg4RxFilename (std::string outputFilename);
+
+	/**
+	* Get the name of the file where rach preamble rx will be logged.  
+	* @return the name of the file where rach preamble rx will be logged
+	*/
+	std::string GetPreambleRxFilename (void);
+
+	/**
+	* Get the name of the file where rach preamble correct receptions or collisions will be logged.  
+	* @return the name of the file where rach preamble correct receptions or collisions will be logged
+	*/
+	std::string GetPreambleCollisionsFilename (void);
+
+	/**
+	* Get the name of the file where msg3 tx will be logged.  
+	* @return the name of the file where rach preamble rx will be logged
+	*/
+	std::string GetMsg3TxFilename (void);
+
+	/**
+	* Get the name of the file where msg3 rx will be logged, with collision or correct.  
+	* @return the name of the file where msg3 rx will be logged
+	*/
+	std::string GetMsg3RxFilename (void);	
+
+	/**
+	* Get the name of the file where msg4 rx will be logged, with collision or correct.  
+	* @return the name of the file where msg4 rx will be logged
+	*/
+	std::string GetMsg4RxFilename (void);
+
+	    /*.AddAttribute ("PreambleRxOutputFilename",
+                   "Name of the file where rach preamble rx will be logged.",
+                   StringValue ("PreambleRx.txt"),
+                   MakeStringAccessor (&RaStatsCalculator::SetPreambleRxFilename),
+                   MakeStringChecker ())
+    .AddAttribute ("PreambleCollisionsOutputFilename",
+                   "Name of the file where rach preamble correct receptions or collisions will be logged.",
+                   StringValue ("PreambleCollisions.txt"),
+                   MakeStringAccessor (&RaStatsCalculator::SetPreambleCollisionsFilename),
+                   MakeStringChecker ())
+    .AddAttribute ("Msg3TxOutputFilename",
+                   "Name of the file where msg3 tx will be logged.",
+                   StringValue ("Msg3Tx.txt"),
+                   MakeStringAccessor (&RaStatsCalculator::SetMsg3TxFilename),
+                   MakeStringChecker ())
+    .AddAttribute ("Msg3RxOutputFilename",
+                   "Name of the file where msg3 rx will be logged.",
+                   StringValue ("Msg3Rx.txt"),
+                   MakeStringAccessor (&RaStatsCalculator::SetMsg3RxFilename),
+                   MakeStringChecker ())
+    .AddAttribute ("Msg4RxOutputFilename",
+                   "Name of the file where msg4 rx will be logged.",
+                   StringValue ("Msg4Rx.txt"),
+                   MakeStringAccessor (&RaStatsCalculator::SetMsg4RxFilename),
+                   MakeStringChecker ())*/
