@@ -532,16 +532,6 @@ deAttach(Ptr<NetDevice> ueDev, Ptr<NetDevice> enbDev) {
       Ptr<LteUeRrc> ueRrc = ueLteDevice->GetRrc(); // optimize this call
       ueRrc->StopConnectionAttempt();
     }
-
-  //TODO force reconnection from UE side
-  /*else // No more useful! 
-    {
-      // reconfigure UE rrc
-      Ptr<LteUeRrc> ueRrc = ueLteDevice->GetRrc(); // optimize this call
-      ueRrc->GetAsSapProvider()->Disconnect(); // now in IDLE_CAMPED_NORMALLY
-      Ptr<LteUePhy> uePhy = ueLteDevice->GetPhy();
-      uePhy->Disconnect();
-    }*/
 }
 
 void
@@ -605,10 +595,6 @@ static ns3::GlobalValue g_nMacroEnbSitesX("nMacroEnbSitesX",
 static ns3::GlobalValue g_interSiteDistance("interSiteDistance",
 		"min distance between two nearby macro cell sites",
 		ns3::DoubleValue(500), ns3::MakeDoubleChecker<double>());
-//static ns3::GlobalValue g_areaMarginFactor("areaMarginFactor",
-//		"how much the UE area extends outside the macrocell grid, "
-//				"expressed as fraction of the interSiteDistance",
-//		ns3::DoubleValue(0.3), ns3::MakeDoubleChecker<double>());
 static ns3::GlobalValue g_macroUeDensity("macroUeDensity",
 		"How many macrocell UEs there are per square meter",
 		ns3::DoubleValue(0.0004), ns3::MakeDoubleChecker<double>());
@@ -715,10 +701,6 @@ int main(int argc, char *argv[]) {
 	uint32_t nMacroEnbSitesX = uintegerValue.Get();
 	GlobalValue::GetValueByName("interSiteDistance", doubleValue);
 	double interSiteDistance = doubleValue.Get();
-//	GlobalValue::GetValueByName("areaMarginFactor", doubleValue);
-//	double areaMarginFactor = doubleValue.Get();
-//	GlobalValue::GetValueByName("macroUeDensity", doubleValue);
-//	double macroUeDensity = doubleValue.Get();
 	GlobalValue::GetValueByName("macroEnbTxPowerDbm", doubleValue);
 	double macroEnbTxPowerDbm = doubleValue.Get();
 	GlobalValue::GetValueByName("macroEnbDlEarfcn", uintegerValue);
@@ -970,18 +952,6 @@ int main(int argc, char *argv[]) {
 		      serverApps.Add(dlPacketSinkHelper.Install(ue));
 		      remote_port_vector_dl.push_back(remote_port_dl);
 
-
-		        /*
-		      NS_LOG_LOGIC ("installing IotMarReporting DL app for UE " << u);
-		      IotMarPeriodicHelper dlClientHelper = IotMarPeriodicHelper(remoteHostAddr, remote_port);
-		      clientApps.Add(dlClientHelper.Install(ue));
-		      PacketSinkHelper dlPacketSinkHelper(
-		          "ns3::UdpSocketFactory",
-		          InetSocketAddress(Ipv4Address::GetAny(),
-		              remote_port));
-		      serverApps.Add(dlPacketSinkHelper.Install(remoteHost));
-		        */
-
 		      // radio bearer
 		      Ptr<EpcTft> tft = Create<EpcTft>(); 
 		      EpcTft::PacketFilter dlpf;
@@ -1005,7 +975,7 @@ int main(int argc, char *argv[]) {
 	} // end of if(useApplication)
 
 
-	/*
+	/* The following can be used to force a user to detach and reattach to the network
 	// randomize detach time
 	Ptr<UniformRandomVariable> detachTimeSeconds = CreateObject<
 	  UniformRandomVariable>();
