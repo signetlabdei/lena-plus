@@ -14,4 +14,4 @@ Moreover up to now only PfFfMacScheduler is supported, therefore add also
 	lteHelper->SetSchedulerType ("ns3::PfFfMacScheduler");
 
 ## Results
-A paper with some experimental results obtained using the realistic RACH model is currently under review for possible presentation at the IEEE ICC 2016 conference, May 23 -27, 2016, Kuala Lumpur, Malaysia, and can be found on arXiv: http://arxiv.org/abs/1601.05098
+A paper with some experimental results obtained using the realistic RACH model was accepted for presentation at the IEEE ICC 2016 conference, May 23 -27, 2016, Kuala Lumpur, Malaysia, and can be found on arXiv: http://arxiv.org/abs/1601.05098
