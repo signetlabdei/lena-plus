@@ -113,7 +113,7 @@ public:
    * \param [in] bytes The number of bytes to transmit
    */
   typedef void (* NotifyTxTracedCallback)
-    (const uint16_t rnti, const uint8_t lcid, const uint32_t bytes);
+    (uint16_t rnti, uint8_t lcid, uint32_t bytes);
 
   /**
    * TracedCallback signature for
@@ -125,8 +125,7 @@ public:
    * \param [in] delay Delay since sender timestamp, in ns.
    */
   typedef void (* ReceiveTracedCallback)
-    (const uint16_t rnti, const uint8_t lcid,
-     const uint32_t bytes, const uint64_t delay);
+    (uint16_t rnti, uint8_t lcid, uint32_t bytes, uint64_t delay);
 
   /// \todo MRE What is the sense to duplicate all the interfaces here???
   // NB to avoid the use of multiple inheritance

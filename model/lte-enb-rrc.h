@@ -325,8 +325,8 @@ public:
    * \param [in] newState
    */
   typedef void (* StateTracedCallback)
-    (const uint64_t imsi, const uint16_t cellId, const uint16_t rnti,
-     const State oldState, const State newState);
+    (uint64_t imsi, uint16_t cellId, uint16_t rnti,
+     State oldState, State newState);
 
 
   /**
@@ -844,7 +844,7 @@ public:
    * \param [in] rnti
    */
   typedef void (* NewUeContextTracedCallback)
-    (const uint16_t cellId, const uint16_t rnti);
+    (uint16_t cellId, uint16_t rnti);
 
   /**
    * TracedCallback signature for connection and handover end events.
@@ -854,7 +854,7 @@ public:
    * \param [in] rnti
    */
   typedef void (* ConnectionHandoverTracedCallback)
-    (const uint64_t imsi, const uint16_t cellId, const uint16_t rnti);
+    (uint64_t imsi, uint16_t cellId, uint16_t rnti);
   
   /**
    * TracedCallback signature for handover start events.
@@ -865,8 +865,7 @@ public:
    * \param [in] targetCid
    */
   typedef void (* HandoverStartTracedCallback)
-    (const uint64_t imsi, const uint16_t cellId, const uint16_t rnti,
-     const uint16_t targetCid);
+    (uint64_t imsi, uint16_t cellId, uint16_t rnti, uint16_t targetCid);
 
   /**
    * TracedCallback signature for receive measurement report events.
@@ -875,10 +874,12 @@ public:
    * \param [in] cellId
    * \param [in] rnti
    * \param [in] report
+   * \todo The \c LteRrcSap::MeasurementReport argument should be
+   * changed to a const reference since the argument is large.
    */
   typedef void (* ReceiveReportTracedCallback)
-    (const uint64_t imsi, const uint16_t cellId, const uint16_t rnti,
-     const LteRrcSap::MeasurementReport report);
+    (uint64_t imsi, uint16_t cellId, uint16_t rnti,
+         LteRrcSap::MeasurementReport report);
 
   
   /**

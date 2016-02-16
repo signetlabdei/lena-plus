@@ -82,7 +82,7 @@ public:
    * \brief Get the device where the phy layer is attached
    * \return the pointer to the device
    */
-  Ptr<LteNetDevice> GetDevice ();
+  Ptr<LteNetDevice> GetDevice () const;
 
   /** 
    * 

@@ -270,8 +270,7 @@ public:
    * \param [in] newState
    */
   typedef void (* StateTracedCallback)
-    (const uint16_t cellId, const uint16_t rnti,
-     const State oldState, const State newState);
+    (uint16_t cellId, uint16_t rnti, State oldState, State newState);
 
   /**
    * TracedCallback signature for tx events.
@@ -291,8 +290,7 @@ public:
    * \param [in] sinr
    */
   typedef void (* RsrpSinrTracedCallback)
-    (const uint16_t cellId, const uint16_t rnti,
-     const double rsrp, const double sinr);
+    (uint16_t cellId, uint16_t rnti, double rsrp, double sinr);
 
   /**
    * TracedCallback signature for cell RSRP and RSRQ.
@@ -304,8 +302,8 @@ public:
    * \param [in] isServingCell
    */
   typedef void (* RsrpRsrqTracedCallback)
-    (const uint16_t rnti, const uint16_t cellId,
-     const double rsrp, const double rsrq, const bool isServingCell);
+    (uint16_t rnti, uint16_t cellId, double rsrp, double rsrq,
+     bool isServingCell);
 
   void Disconnect(void);
 
