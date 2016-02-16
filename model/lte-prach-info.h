@@ -27,6 +27,11 @@
 
 namespace ns3 {
 
+/**
+ * The purpose of this class is to track which frames are PRACH frames,
+ * according to a certain PRACH index. Only PRACH Configuration Index is
+ * supported up to now.
+ */
 class LtePrachInfo {
 
 public: 
