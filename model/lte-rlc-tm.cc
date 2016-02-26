@@ -29,7 +29,6 @@
 #include "ns3/lte-rlc-tm.h"
 #include "ns3/lte-rlc-tag.h"
 
-#include "ns3/lte-message3-tag.h"
 #include <ns3/random-variable-stream.h>
 
 
