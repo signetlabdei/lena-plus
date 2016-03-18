@@ -128,7 +128,8 @@ def build(bld):
         'model/lte-chunk-processor-multiple.cc',
         'model/lte-prach-info.cc',
         'model/epc-s1ap-header.cc',
-        'model/epc-s1ap.cc'
+        'model/epc-s1ap.cc',
+        'model/epc-mme-application.cc'
         ]
 
     module_test = bld.create_ns3_module_test_library('lte')
@@ -311,7 +312,8 @@ def build(bld):
         'model/lte-chunk-processor-multiple.h', 
         'model/lte-prach-info.h',
         'model/epc-s1ap-header.h',
-        'model/epc-s1ap.h'
+        'model/epc-s1ap.h',
+        'model/epc-mme-application.h'
         ]
 
     if (bld.env['ENABLE_EMU']):
