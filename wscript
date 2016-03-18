@@ -127,6 +127,8 @@ def build(bld):
         'model/lte-interference-multiple-rx.cc',
         'model/lte-chunk-processor-multiple.cc',
         'model/lte-prach-info.cc',
+        'model/epc-s1ap-header.cc',
+        'model/epc-s1ap.cc'
         ]
 
     module_test = bld.create_ns3_module_test_library('lte')
@@ -308,6 +310,8 @@ def build(bld):
         'model/lte-interference-multiple-rx.h',     
         'model/lte-chunk-processor-multiple.h', 
         'model/lte-prach-info.h',
+        'model/epc-s1ap-header.h',
+        'model/epc-s1ap.h'
         ]
 
     if (bld.env['ENABLE_EMU']):
