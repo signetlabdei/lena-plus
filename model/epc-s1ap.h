@@ -1,7 +1,8 @@
 /* -*-  Mode: C++; c-file-style: "gnu"; indent-tabs-mode:nil; -*- */
 /*
  * Copyright (c) 2012 Centre Tecnologic de Telecomunicacions de Catalunya (CTTC)
- *
+ * Copyright (c) 2016, University of Padova, Dep. of Information Engineering, SIGNET lab. 
+
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation;
@@ -74,7 +75,7 @@ public:
   /** 
    * Constructor
    */
-  EpcS1apEnb ();
+  EpcS1apEnb (Ptr<Socket> localSocket, Ipv4Address enbAddress, Ipv4Address mmeAddress, uint16_t cellId, uint16_t mmeId);
 
   /**
    * Destructor
@@ -102,9 +103,10 @@ public:
    * \param enbAddress the address of the eNodeB on which this is installed
    * \param mmeId the ID of the MME to which the eNB is connected
    * \param mmeAddress the address of the MME to which the eNB is connected
+   * \param the socket created in the Epc Helper
    */
   void AddS1apInterface (uint16_t enbId, Ipv4Address enbAddress,
-                       uint16_t mmeId, Ipv4Address mmeAddress);
+                       uint16_t mmeId, Ipv4Address mmeAddress, Ptr<Socket> localS1apSocket);
 
 
   /** 
@@ -118,12 +120,13 @@ public:
 
 protected:
   // Interface provided by EpcS1apSapEnbProvider
-  virtual void DoSendInitialUeMessage (uint64_t mmeUeS1Id, uint16_t enbUeS1Id, uint64_t stmsi, uint16_t ecgi) = 0;
-  virtual void DoSendErabReleaseIndication (uint64_t mmeUeS1Id, uint16_t enbUeS1Id, std::list<EpcS1apSap::ErabToBeReleasedIndication> erabToBeReleaseIndication ) = 0;
+  virtual void DoSendInitialUeMessage (uint64_t mmeUeS1Id, uint16_t enbUeS1Id, uint64_t stmsi, uint16_t ecgi);
+  virtual void DoSendErabReleaseIndication (uint64_t mmeUeS1Id, uint16_t enbUeS1Id, std::list<EpcS1apSap::ErabToBeReleasedIndication> erabToBeReleaseIndication );
   virtual void DoSendInitialContextSetupResponse (uint64_t mmeUeS1Id,
                                                   uint16_t enbUeS1Id,
-                                                  std::list<EpcS1apSap::ErabSetupItem> erabSetupList) = 0;
-  virtual void DoSendPathSwitchRequest (uint64_t enbUeS1Id, uint64_t mmeUeS1Id, uint16_t gci, std::list<EpcS1apSap::ErabSwitchedInDownlinkItem> erabToBeSwitchedInDownlinkList) = 0;
+                                                  std::list<EpcS1apSap::ErabSetupItem> erabSetupList);
+  virtual void DoSendPathSwitchRequest (uint64_t enbUeS1Id, uint64_t mmeUeS1Id, uint16_t gci, std::list<EpcS1apSap::ErabSwitchedInDownlinkItem> erabToBeSwitchedInDownlinkList)
+  ;
 
   EpcS1apSapEnb* m_s1apSapUser;
   EpcS1apSapEnbProvider* m_s1apSapProvider;
@@ -168,8 +171,9 @@ class EpcS1apMme : public Object
 public:
   /** 
    * Constructor
+   * \param the socket opened on the node in which this object is installed
    */
-  EpcS1apMme ();
+  EpcS1apMme (const Ptr<Socket> s1apSocket, uint16_t mmeId);
 
   /**
    * Destructor
@@ -195,11 +199,8 @@ public:
    * Add an S1ap interface to this EPC S1ap entity
    * \param enbId the cell ID of the eNodeB which the MME is connected to
    * \param enbAddress the address of the eNodeB which the MME is connected to
-   * \param mmeId the ID of the MME on which this entity is installed
-   * \param mmeAddress the address of the MME on which this entity is installed
    */
-  void AddS1apInterface (uint16_t enbId, Ipv4Address enbAddress,
-                       uint16_t mmeId, Ipv4Address mmeAddress);
+  void AddS1apInterface (uint16_t enbId, Ipv4Address enbAddress);
 
 
   /** 
@@ -243,6 +244,10 @@ private:
    * UDP port to be used for the S1ap interfaces: S1ap
    */
   uint16_t m_s1apUdpPort;
+
+  uint16_t m_mmeId; // ID of the MME to which this S1AP endpoint is installed
+
+  Ptr<Socket> m_localS1APSocket; // local socket to receive from the eNBs S1AP endpoints
 
 };
 

@@ -1,7 +1,7 @@
 /* -*-  Mode: C++; c-file-style: "gnu"; indent-tabs-mode:nil; -*- */
 /*
  * Copyright (c) 2011 Centre Tecnologic de Telecomunicacions de Catalunya (CTTC)
- * Copyright (c) 2015, University of Padova, Dep. of Information Engineering, SIGNET lab.
+ * Copyright (c) 2016, University of Padova, Dep. of Information Engineering, SIGNET lab.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -20,7 +20,7 @@
  *         Nicola Baldo <nbaldo@cttc.cat>
  *
  * Modified by Michele Polese <michele.polese@gmail.com>
- *     (support for RRC_CONNECTED->RRC_IDLE state transition)
+ *     (support for RRC_CONNECTED->RRC_IDLE state transition + support for real S1AP link)
  */
 
 
@@ -89,7 +89,7 @@ EpcEnbApplication::EpcEnbApplication (Ptr<Socket> lteSocket, Ptr<Socket> s1uSock
     m_sgwS1uAddress (sgwS1uAddress),
     m_gtpuUdpPort (2152), // fixed by the standard
     m_s1SapUser (0),
-    m_s1apSapMme (0),
+    m_s1apSapEnbProvider (0),
     m_cellId (cellId)
 {
   NS_LOG_FUNCTION (this << lteSocket << s1uSocket << sgwS1uAddress);
@@ -112,7 +112,7 @@ EpcEnbApplication::SetS1SapUser (EpcEnbS1SapUser * s)
   m_s1SapUser = s;
 }
 
-  
+
 EpcEnbS1SapProvider* 
 EpcEnbApplication::GetS1SapProvider ()
 {
@@ -120,9 +120,9 @@ EpcEnbApplication::GetS1SapProvider ()
 }
 
 void 
-EpcEnbApplication::SetS1apSapMme (EpcS1apSapMme * s)
+EpcEnbApplication::SetS1apSapMme (EpcS1apSapEnbProvider * s)
 {
-  m_s1apSapMme = s;
+  m_s1apSapEnbProvider = s;
 }
 
   
@@ -138,7 +138,7 @@ EpcEnbApplication::DoInitialUeMessage (uint64_t imsi, uint16_t rnti)
   NS_LOG_FUNCTION (this);
   // side effect: create entry if not exist
   m_imsiRntiMap[imsi] = rnti;
-  m_s1apSapMme->InitialUeMessage (imsi, rnti, imsi, m_cellId);
+  m_s1apSapEnbProvider->SendInitialUeMessage (imsi, rnti, imsi, m_cellId); // TODO if more than one MME is used, extend this call
 }
 
 void 
@@ -174,7 +174,7 @@ EpcEnbApplication::DoPathSwitchRequest (EpcEnbS1SapProvider::PathSwitchRequestPa
 
       erabToBeSwitchedInDownlinkList.push_back (erab);
     }
-  m_s1apSapMme->PathSwitchRequest (enbUeS1Id, mmeUeS1Id, gci, erabToBeSwitchedInDownlinkList);
+  m_s1apSapEnbProvider->SendPathSwitchRequest (enbUeS1Id, mmeUeS1Id, gci, erabToBeSwitchedInDownlinkList);
 }
 
 void 
@@ -333,6 +333,6 @@ EpcEnbApplication::DoReleaseIndication (uint64_t imsi, uint16_t rnti, uint8_t be
   erab.erabId = bearerId;
   erabToBeReleaseIndication.push_back (erab);
   //From 3GPP TS 23401-950 Section 5.4.4.2, enB sends EPS bearer Identity in Bearer Release Indication message to MME
-  m_s1apSapMme->ErabReleaseIndication (imsi, rnti, erabToBeReleaseIndication);
+  m_s1apSapEnbProvider->SendErabReleaseIndication (imsi, rnti, erabToBeReleaseIndication);
 }
 }  // namespace ns3

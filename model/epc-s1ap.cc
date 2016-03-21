@@ -1,5 +1,6 @@
 /* -*-  Mode: C++; c-file-style: "gnu"; indent-tabs-mode:nil; -*- */
 /*
+ * Copyright (c) 2016, University of Padova, Dep. of Information Engineering, SIGNET lab. 
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -22,13 +23,14 @@
 #include "ns3/packet.h"
 #include "ns3/node.h"
 #include "ns3/epc-gtpu-header.h"
+#include <ns3/simulator.h>
 
 #include "ns3/epc-s1ap-header.h"
 #include "ns3/epc-s1ap.h"
 
 namespace ns3 {
 
-NS_LOG_COMPONENT_DEFINE ("EpcS1apEnb");
+NS_LOG_COMPONENT_DEFINE ("EpcS1ap");
 
 S1apIfaceInfo::S1apIfaceInfo (Ipv4Address remoteIpAddr, Ptr<Socket> localCtrlPlaneSocket)
 {
@@ -77,11 +79,11 @@ S1apConnectionInfo::operator= (const S1apConnectionInfo& value)
 
 NS_OBJECT_ENSURE_REGISTERED (EpcS1apEnb);
 
-EpcS1apEnb::EpcS1apEnb ()
+EpcS1apEnb::EpcS1apEnb (Ptr<Socket> localSocket, Ipv4Address enbAddress, Ipv4Address mmeAddress, uint16_t cellId, uint16_t mmeId)
   : m_s1apUdpPort (36412) // As defined by IANA
 {
   NS_LOG_FUNCTION (this);
-
+  AddS1apInterface(cellId, enbAddress, mmeId, mmeAddress, localSocket);
   m_s1apSapProvider = new MemberEpcS1apSapEnbProvider<EpcS1apEnb> (this);
 }
 
@@ -126,19 +128,11 @@ EpcS1apEnb::GetEpcS1apSapEnbProvider ()
 
 void
 EpcS1apEnb::AddS1apInterface (uint16_t enbId, Ipv4Address enbAddress,
-                       uint16_t mmeId, Ipv4Address mmeAddress)
+                       uint16_t mmeId, Ipv4Address mmeAddress,
+                       Ptr<Socket> localS1apSocket)
 {
   NS_LOG_FUNCTION (this << enbId << enbAddress << mmeId << mmeAddress);
 
-  int retval;
-
-  // Get local eNB where this S1ap entity belongs to
-  Ptr<Node> localEnb = GetObject<Node> ();
-
-  // Create S1ap socket for the local eNB
-  Ptr<Socket> localS1apSocket = Socket::CreateSocket (localEnb, TypeId::LookupByName ("ns3::UdpSocketFactory"));
-  retval = localS1apSocket->Bind (InetSocketAddress (enbAddress, m_s1apUdpPort));
-  NS_ASSERT (retval == 0);
   localS1apSocket->SetRecvCallback (MakeCallback (&EpcS1apEnb::RecvFromS1apSocket, this));
 
   NS_ASSERT_MSG (m_s1apInterfaceSockets.find (mmeId) == m_s1apInterfaceSockets.end (),
@@ -147,11 +141,6 @@ EpcS1apEnb::AddS1apInterface (uint16_t enbId, Ipv4Address enbAddress,
 
   // TODO m_mmeId is initialized once since one mme is connected to this enb interface, consider when extending
   m_mmeId = mmeId;
-
-  NS_ASSERT_MSG (m_s1apInterfaceCellIds.find (localS1apSocket) == m_s1apInterfaceCellIds.end (),
-                 "Mapping for S1AP local socket = " << localS1apSocket << " is already known");
-  m_s1apInterfaceCellIds [localS1apSocket] = Create<S1apConnectionInfo> (enbId, mmeId);
-
 }
 
 
@@ -160,13 +149,9 @@ EpcS1apEnb::RecvFromS1apSocket (Ptr<Socket> socket)
 {
   NS_LOG_FUNCTION (this << socket);
 
-  NS_LOG_LOGIC ("Recv S1ap message: from Socket");
+  NS_LOG_LOGIC ("Recv S1ap message: S1AP eNB: from Socket at time " << Simulator::Now ().GetSeconds());
   Ptr<Packet> packet = socket->Recv ();
   NS_LOG_LOGIC ("packetLen = " << packet->GetSize ());
-
-  NS_ASSERT_MSG (m_s1apInterfaceCellIds.find (socket) != m_s1apInterfaceCellIds.end (),
-                 "Missing infos of local enb and remote mmeId");
-  Ptr<S1apConnectionInfo> connInfo = m_s1apInterfaceCellIds [socket];
 
   EpcS1APHeader s1apHeader;
   packet->RemoveHeader (s1apHeader);
@@ -174,30 +159,6 @@ EpcS1apEnb::RecvFromS1apSocket (Ptr<Socket> socket)
   NS_LOG_LOGIC ("S1ap header: " << s1apHeader);
 
   uint8_t procedureCode = s1apHeader.GetProcedureCode ();
-
-  // if (procedureCode == EpcS1APHeader::InitialUeMessage)
-  // {
-  //   NS_LOG_LOGIC ("Recv S1ap message: INITIAL UE MESSAGE");
-  //   EpcS1APInitialUeMessageHeader initialMessage;
-  //   packet->RemoveHeader(initialMessage);
-  //   NS_LOG_INFO ("S1ap Initial Message header " << initialMessage);
-
-  //   uint64_t mmeUeS1apId = initialMessage.GetMmeUeS1Id();
-  //   uint16_t enbUeS1apId = initialMessage.GetEnbUeS1Id();
-  //   uint64_t stmsi = initialMessage.GetSTmsi();
-  //   uint16_t ecgi = initialMessage.GetEcgi();
-
-  //   NS_LOG_LOGIC("mmeUeS1apId = " << mmeUeS1apId);
-  //   NS_LOG_LOGIC("enbUeS1apId = " << enbUeS1apId);
-  //   NS_LOG_LOGIC("stmsi = " << stmsi);
-  //   NS_LOG_LOGIC("ecgi = " << ecgi);
-
-  //   NS_ASSERT_MSG(enbUeS1apId == connInfo->m_enbId,
-  //                 "CellId of received message mismatches local cell Id");
-
-  //   m_s1apSapUser->InitialUeMessage()
-
-  // }
 
   if (procedureCode == EpcS1APHeader::InitialContextSetupRequest)
   {
@@ -218,7 +179,7 @@ EpcS1apEnb::RecvFromS1apSocket (Ptr<Socket> socket)
   } 
   else if (procedureCode == EpcS1APHeader::PathSwitchRequestAck)
   {
-    NS_LOG_LOGIC ("Recv S1ap message: INITIAL CONTEXT SETUP REQUEST");
+    NS_LOG_LOGIC ("Recv S1ap message: PATH SWITCH REQUEST ACK");
     EpcS1APPathSwitchRequestAcknowledgeHeader reqHeader;
     packet->RemoveHeader(reqHeader);
 
@@ -264,7 +225,7 @@ EpcS1apEnb::DoSendInitialUeMessage (uint64_t mmeUeS1Id, uint16_t enbUeS1Id, uint
   NS_LOG_LOGIC ("sourceSocket = " << sourceSocket);
   NS_LOG_LOGIC ("mmeIpAddr = " << mmeIpAddr);
 
-  NS_LOG_INFO ("Send S1ap message: INITIAL UE MESSAGE");
+  NS_LOG_INFO ("Send S1ap message: INITIAL UE MESSAGE " << Simulator::Now ().GetSeconds());
 
   // build the header
   EpcS1APInitialUeMessageHeader initialMessage;
@@ -306,7 +267,7 @@ EpcS1apEnb::DoSendErabReleaseIndication (uint64_t mmeUeS1Id, uint16_t enbUeS1Id,
   NS_LOG_LOGIC ("sourceSocket = " << sourceSocket);
   NS_LOG_LOGIC ("mmeIpAddr = " << mmeIpAddr);
 
-  NS_LOG_INFO ("Send S1ap message: E-RAB RELEASE INDICATION");
+  NS_LOG_INFO ("Send S1ap message: E-RAB RELEASE INDICATION " << Simulator::Now ().GetSeconds());
 
   EpcS1APErabReleaseIndicationHeader indHeader;
   
@@ -349,7 +310,7 @@ EpcS1apEnb::DoSendInitialContextSetupResponse (uint64_t mmeUeS1Id,
   NS_LOG_LOGIC ("sourceSocket = " << sourceSocket);
   NS_LOG_LOGIC ("mmeIpAddr = " << mmeIpAddr);
 
-  NS_LOG_INFO ("Send S1ap message: INITIAL CONTEXT SETUP RESPONSE");
+  NS_LOG_INFO ("Send S1ap message: INITIAL CONTEXT SETUP RESPONSE " << Simulator::Now ().GetSeconds());
 
   EpcS1APInitialContextSetupResponseHeader indHeader;
   
@@ -392,7 +353,7 @@ EpcS1apEnb::DoSendPathSwitchRequest (uint64_t enbUeS1Id, uint64_t mmeUeS1Id, uin
   NS_LOG_LOGIC ("sourceSocket = " << sourceSocket);
   NS_LOG_LOGIC ("mmeIpAddr = " << mmeIpAddr);
 
-  NS_LOG_INFO ("Send S1ap message: PATH SWITCH REQUEST");
+  NS_LOG_INFO ("Send S1ap message: PATH SWITCH REQUEST " << Simulator::Now ().GetSeconds());
 
   EpcS1APPathSwitchRequestHeader indHeader;
   
@@ -420,15 +381,16 @@ EpcS1apEnb::DoSendPathSwitchRequest (uint64_t enbUeS1Id, uint64_t mmeUeS1Id, uin
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////
-
 NS_OBJECT_ENSURE_REGISTERED (EpcS1apMme);
 
-EpcS1apMme::EpcS1apMme ()
+EpcS1apMme::EpcS1apMme (const Ptr<Socket> s1apSocket, uint16_t mmeId)
   : m_s1apUdpPort (36412) // As defined by IANA
 {
   NS_LOG_FUNCTION (this);
-
+  m_localS1APSocket = s1apSocket;
   m_s1apSapProvider = new MemberEpcS1apSapMmeProvider<EpcS1apMme> (this);
+  m_localS1APSocket->SetRecvCallback (MakeCallback (&EpcS1apMme::RecvFromS1apSocket, this));
+  m_mmeId = mmeId;
 }
 
 EpcS1apMme::~EpcS1apMme ()
@@ -471,30 +433,13 @@ EpcS1apMme::GetEpcS1apSapMmeProvider ()
 
 
 void
-EpcS1apMme::AddS1apInterface (uint16_t enbId, Ipv4Address enbAddress,
-                       uint16_t mmeId, Ipv4Address mmeAddress)
+EpcS1apMme::AddS1apInterface (uint16_t enbId, Ipv4Address enbAddress)
 {
-  NS_LOG_FUNCTION (this << enbId << enbAddress << mmeId << mmeAddress);
-
-  int retval;
-
-  // Get local MME where this S1ap entity belongs to
-  Ptr<Node> localMme = GetObject<Node> ();
-
-  // Create S1ap socket for the local MME
-  Ptr<Socket> localS1apSocket = Socket::CreateSocket (localMme, TypeId::LookupByName ("ns3::UdpSocketFactory"));
-  retval = localS1apSocket->Bind (InetSocketAddress (mmeAddress, m_s1apUdpPort));
-  NS_ASSERT (retval == 0);
-  localS1apSocket->SetRecvCallback (MakeCallback (&EpcS1apMme::RecvFromS1apSocket, this));
+  NS_LOG_FUNCTION (this << enbId << enbAddress << m_mmeId);
 
   NS_ASSERT_MSG (m_s1apInterfaceSockets.find (enbId) == m_s1apInterfaceSockets.end (),
                  "Mapping for enbId = " << enbId << " is already known");
-  m_s1apInterfaceSockets [enbId] = Create<S1apIfaceInfo> (enbAddress, localS1apSocket);
-
-  NS_ASSERT_MSG (m_s1apInterfaceCellIds.find (localS1apSocket) == m_s1apInterfaceCellIds.end (),
-                 "Mapping for S1AP local socket = " << localS1apSocket << " is already known");
-  m_s1apInterfaceCellIds [localS1apSocket] = Create<S1apConnectionInfo> (enbId, mmeId);
-
+  m_s1apInterfaceSockets [enbId] = Create<S1apIfaceInfo> (enbAddress, m_localS1APSocket); // TODO m_localS1APSocket is useless
 }
 
 
@@ -503,13 +448,9 @@ EpcS1apMme::RecvFromS1apSocket (Ptr<Socket> socket)
 {
   NS_LOG_FUNCTION (this << socket);
 
-  NS_LOG_LOGIC ("Recv S1ap message: from Socket");
+  NS_LOG_LOGIC ("Recv S1ap message: S1AP MME: from Socket " << Simulator::Now ().GetSeconds());
   Ptr<Packet> packet = socket->Recv ();
   NS_LOG_LOGIC ("packetLen = " << packet->GetSize ());
-
-  NS_ASSERT_MSG (m_s1apInterfaceCellIds.find (socket) != m_s1apInterfaceCellIds.end (),
-                 "Missing infos of remote enb and local mmeId");
-  Ptr<S1apConnectionInfo> connInfo = m_s1apInterfaceCellIds [socket];
 
   EpcS1APHeader s1apHeader;
   packet->RemoveHeader (s1apHeader);
@@ -535,8 +476,6 @@ EpcS1apMme::RecvFromS1apSocket (Ptr<Socket> socket)
     NS_LOG_LOGIC("stmsi = " << stmsi);
     NS_LOG_LOGIC("ecgi = " << ecgi);
 
-    //NS_ASSERT_MSG(enbUeS1apId == connInfo->m_enbId,
-    //              "CellId of received message mismatches local cell Id");
     // TODO check if ASSERT is needed
 
     m_s1apSapUser->InitialUeMessage(mmeUeS1Id, enbUeS1Id, stmsi, ecgi);
@@ -544,7 +483,7 @@ EpcS1apMme::RecvFromS1apSocket (Ptr<Socket> socket)
   }
   else if (procedureCode == EpcS1APHeader::PathSwitchRequest)
   {
-    NS_LOG_LOGIC ("Recv S1ap message: PATH SWITCH REQUEST");
+    NS_LOG_LOGIC ("Recv S1ap message: PATH SWITCH REQUEST " << Simulator::Now ().GetSeconds());
     EpcS1APPathSwitchRequestHeader psrHeader;
     packet->RemoveHeader(psrHeader);
     NS_LOG_INFO ("S1ap Path Switch Request header " << psrHeader);
@@ -564,7 +503,7 @@ EpcS1apMme::RecvFromS1apSocket (Ptr<Socket> socket)
   }
   else if (procedureCode == EpcS1APHeader::ErabReleaseIndication)
   {
-   NS_LOG_LOGIC ("Recv S1ap message: E-RAB RELEASE INDICATION");
+   NS_LOG_LOGIC ("Recv S1ap message: E-RAB RELEASE INDICATION " << Simulator::Now ().GetSeconds());
     EpcS1APErabReleaseIndicationHeader eriHeader;
     packet->RemoveHeader(eriHeader);
     NS_LOG_INFO ("S1ap Erab Release Indication header " << eriHeader);
@@ -600,15 +539,12 @@ EpcS1apMme::DoSendInitialContextSetupRequest (uint64_t mmeUeS1Id,
   NS_ASSERT_MSG (m_s1apInterfaceSockets.find (cellId) != m_s1apInterfaceSockets.end (),
                "Missing infos for cellId = " << cellId);
 
-
-  Ptr<S1apIfaceInfo> socketInfo = m_s1apInterfaceSockets [cellId]; // in case of multiple mme, extend the call
-  Ptr<Socket> sourceSocket = socketInfo->m_localCtrlPlaneSocket;
+  Ptr<S1apIfaceInfo> socketInfo = m_s1apInterfaceSockets [cellId];
   Ipv4Address enbIpAddr = socketInfo->m_remoteIpAddr;
 
-  NS_LOG_LOGIC ("sourceSocket = " << sourceSocket);
   NS_LOG_LOGIC ("enbIpAddr = " << enbIpAddr);
 
-  NS_LOG_INFO ("Send S1ap message: INITIAL CONTEXT SETUP REQUEST");
+  NS_LOG_INFO ("Send S1ap message: INITIAL CONTEXT SETUP REQUEST " << Simulator::Now ().GetSeconds());
 
   EpcS1APInitialContextSetupRequestHeader reqHeader;
   
@@ -629,7 +565,7 @@ EpcS1apMme::DoSendInitialContextSetupRequest (uint64_t mmeUeS1Id,
   NS_LOG_INFO ("packetLen = " << packet->GetSize ());
 
   // Send the S1ap message through the socket
-  sourceSocket->SendTo (packet, 0, InetSocketAddress (enbIpAddr, m_s1apUdpPort));
+  m_localS1APSocket->SendTo (packet, 0, InetSocketAddress (enbIpAddr, m_s1apUdpPort));
 }
 
 void 
@@ -648,14 +584,12 @@ EpcS1apMme::DoSendPathSwitchRequestAcknowledge (uint64_t enbUeS1Id, uint64_t mme
   NS_ASSERT_MSG (m_s1apInterfaceSockets.find (cellId) != m_s1apInterfaceSockets.end (),
                "Missing infos for cellId = " << cellId);
 
-  Ptr<S1apIfaceInfo> socketInfo = m_s1apInterfaceSockets [cellId]; // in case of multiple mme, extend the call
-  Ptr<Socket> sourceSocket = socketInfo->m_localCtrlPlaneSocket;
+  Ptr<S1apIfaceInfo> socketInfo = m_s1apInterfaceSockets [cellId];
   Ipv4Address enbIpAddr = socketInfo->m_remoteIpAddr;
 
-  NS_LOG_LOGIC ("sourceSocket = " << sourceSocket);
   NS_LOG_LOGIC ("enbIpAddr = " << enbIpAddr);
 
-  NS_LOG_INFO ("Send S1ap message: PATH SWITCH REQUEST ACKNOWLEDGE");
+  NS_LOG_INFO ("Send S1ap message: PATH SWITCH REQUEST ACKNOWLEDGE " << Simulator::Now ().GetSeconds());
 
   EpcS1APPathSwitchRequestAcknowledgeHeader reqHeader;
   
@@ -677,7 +611,7 @@ EpcS1apMme::DoSendPathSwitchRequestAcknowledge (uint64_t enbUeS1Id, uint64_t mme
   NS_LOG_INFO ("packetLen = " << packet->GetSize ());
 
   // Send the S1ap message through the socket
-  sourceSocket->SendTo (packet, 0, InetSocketAddress (enbIpAddr, m_s1apUdpPort));
+  m_localS1APSocket->SendTo (packet, 0, InetSocketAddress (enbIpAddr, m_s1apUdpPort));
 }
 
 

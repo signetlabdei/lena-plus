@@ -1,6 +1,7 @@
 /* -*-  Mode: C++; c-file-style: "gnu"; indent-tabs-mode:nil; -*- */
 /*
  * Copyright (c) 2012 Centre Tecnologic de Telecomunicacions de Catalunya (CTTC)
+ * Copyright (c) 2016, University of Padova, Dep. of Information Engineering, SIGNET lab. 
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -212,7 +213,8 @@ public:
  */
 class EpcS1apSapMmeProvider : public EpcS1apSap
 {
-
+public:
+  
   virtual void SendInitialContextSetupRequest (uint64_t mmeUeS1Id,
                                            uint16_t enbUeS1Id,
                                            std::list<ErabToBeSetupItem> erabToBeSetupList,

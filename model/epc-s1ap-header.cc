@@ -1,6 +1,7 @@
 /* -*-  Mode: C++; c-file-style: "gnu"; indent-tabs-mode:nil; -*- */
 /*
  * Copyright (c) 2012 Centre Tecnologic de Telecomunicacions de Catalunya (CTTC)
+ * Copyright (c) 2016, University of Padova, Dep. of Information Engineering, SIGNET lab. 
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -21,9 +22,13 @@
 
 #include "ns3/log.h"
 #include "ns3/epc-s1ap-header.h"
-
 #include <list>
 
+
+// TODO 
+// According to 36.413 9.2.3.4: enbUeS1Id should be 3 byte, but in the SAP interface 
+// already defined in the ns-3 release is 2 byte
+// The same holds for mmeUeS1Id, which should be 4 byte, but is 8 byte in the SAP interface
 
 namespace ns3 {
 
@@ -183,7 +188,6 @@ EpcS1APInitialUeMessageHeader::Serialize (Buffer::Iterator start) const
   Buffer::Iterator i = start;
 
   // message type is already in EpcS1APHeader
-  // TODO enbId should be 3 byte, mmeId should be 4, SIZE OF ECGI
   i.WriteHtonU16 (m_enbUeS1Id);     // m_enbUeS1Id
   i.WriteU8 (0);                    // criticality = REJECT
 
@@ -330,7 +334,7 @@ NS_OBJECT_ENSURE_REGISTERED (EpcS1APErabReleaseIndicationHeader);
 
 EpcS1APErabReleaseIndicationHeader::EpcS1APErabReleaseIndicationHeader ()
   : m_numberOfIes (1 + 1 + 1),
-    m_headerLength (9 + 3 + 1),
+    m_headerLength (9 + 3 + 4 + 1),
     m_enbUeS1Id (0xfffa),
     m_mmeUeS1Id (0xfffffffa)
 {
@@ -375,7 +379,6 @@ EpcS1APErabReleaseIndicationHeader::Serialize (Buffer::Iterator start) const
   Buffer::Iterator i = start;
 
   // message type is already in EpcS1APHeader
-  // TODO enbId should be 3 byte, mmeId should be 4, SIZE OF ECGI
   i.WriteU64 (m_mmeUeS1Id);         // mmeUeS1Id
   i.WriteU8 (0);                    // criticality = REJECT
 
@@ -388,7 +391,7 @@ EpcS1APErabReleaseIndicationHeader::Serialize (Buffer::Iterator start) const
   {
     i.WriteU8 (l_iter->erabId);
   }
-  i.WriteU8(0); // criticality = REJECT
+  i.WriteU8(0); // criticality = REJECT, just one for the whole list
 
 }
 
@@ -540,7 +543,6 @@ EpcS1APInitialContextSetupResponseHeader::Serialize (Buffer::Iterator start) con
   Buffer::Iterator i = start;
 
   // message type is already in EpcS1APHeader
-  // TODO enbId should be 3 byte, mmeId should be 4, SIZE OF ECGI
   i.WriteU64 (m_mmeUeS1Id);         // mmeUeS1Id
   i.WriteU8 (1 << 6);               // criticality = IGNORE
 
@@ -667,8 +669,8 @@ EpcS1APInitialContextSetupResponseHeader::GetNumberOfIes () const
 NS_OBJECT_ENSURE_REGISTERED (EpcS1APPathSwitchRequestHeader);
 
 EpcS1APPathSwitchRequestHeader::EpcS1APPathSwitchRequestHeader ()
-  : m_numberOfIes (1 + 1 + 1 + 1),
-    m_headerLength (9 + 3 + 3 + 1 + 6),
+  : m_numberOfIes (1 + 1 + 1 + 1 + 1),
+    m_headerLength (3 + 4 + 1 +9 + 3 + 6),
     m_enbUeS1Id (0xfffa),
     m_ecgi (0xfffa),
     m_mmeUeS1Id (0xfffffffa)
@@ -715,9 +717,7 @@ EpcS1APPathSwitchRequestHeader::Serialize (Buffer::Iterator start) const
 {
   Buffer::Iterator i = start;
 
-  // message type is already in EpcS1APHeader
-  // TODO enbId should be 3 byte, mmeId should be 4, SIZE OF ECGI
- 
+  // message type is already in EpcS1APHeader 
   i.WriteHtonU16 (m_enbUeS1Id);     // m_enbUeS1Id
   i.WriteU8 (0);               // criticality = REJECT
 
@@ -771,7 +771,7 @@ EpcS1APPathSwitchRequestHeader::Deserialize (Buffer::Iterator start)
     i.ReadU8 ();
 
     m_erabToBeSwitchedInDownlinkList.push_back(erabItem);
-    m_headerLength += 9;
+    m_headerLength += 10;
   }
   i.ReadU8();
   m_headerLength += 1;
@@ -924,7 +924,6 @@ EpcS1APInitialContextSetupRequestHeader::Serialize (Buffer::Iterator start) cons
   Buffer::Iterator i = start;
 
   // message type is already in EpcS1APHeader
-  // TODO enbId should be 3 byte, mmeId should be 4, SIZE OF ECGI
   i.WriteU64 (m_mmeUeS1Id);         // mmeUeS1Id
   i.WriteU8 (1 << 6);               // criticality = IGNORE
 
@@ -957,8 +956,6 @@ EpcS1APInitialContextSetupRequestHeader::Serialize (Buffer::Iterator start) cons
   //TODO 9.2.140, 9.2.1.41
 
 }
-
-//TODO uniform erabId size
 
 uint32_t
 EpcS1APInitialContextSetupRequestHeader::Deserialize (Buffer::Iterator start)
@@ -1145,9 +1142,7 @@ EpcS1APPathSwitchRequestAcknowledgeHeader::Serialize (Buffer::Iterator start) co
 {
   Buffer::Iterator i = start;
 
-  // message type is already in EpcS1APHeader
-  // TODO enbId should be 3 byte, mmeId should be 4, SIZE OF ECGI
- 
+  // message type is already in EpcS1APHeader 
   i.WriteHtonU16 (m_enbUeS1Id);     // m_enbUeS1Id
   i.WriteU8 (0);               // criticality = REJECT
 
