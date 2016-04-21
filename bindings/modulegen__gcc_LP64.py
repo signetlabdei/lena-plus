@@ -148,24 +148,20 @@ def register_types(module):
     module.add_class('ModifyBearerRequestMessage', parent=root_module['ns3::EpcS11Sap::GtpcMessage'], outer_class=root_module['ns3::EpcS11SapSgw'])
     ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap [class]
     module.add_class('EpcS1apSap')
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSetupItem [struct]
-    module.add_class('ErabSetupItem', outer_class=root_module['ns3::EpcS1apSap'])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSwitchedInDownlinkItem [struct]
-    module.add_class('ErabSwitchedInDownlinkItem', outer_class=root_module['ns3::EpcS1apSap'])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSwitchedInUplinkItem [struct]
-    module.add_class('ErabSwitchedInUplinkItem', outer_class=root_module['ns3::EpcS1apSap'])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabToBeReleasedIndication [struct]
-    module.add_class('ErabToBeReleasedIndication', outer_class=root_module['ns3::EpcS1apSap'])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabToBeSetupItem [struct]
-    module.add_class('ErabToBeSetupItem', outer_class=root_module['ns3::EpcS1apSap'])
     ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb [class]
     module.add_class('EpcS1apSapEnb', parent=root_module['ns3::EpcS1apSap'])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnbProvider [class]
-    module.add_class('EpcS1apSapEnbProvider', parent=root_module['ns3::EpcS1apSap'])
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::ErabSwitchedInUplinkItem [struct]
+    module.add_class('ErabSwitchedInUplinkItem', outer_class=root_module['ns3::EpcS1apSapEnb'])
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::ErabToBeSetupItem [struct]
+    module.add_class('ErabToBeSetupItem', outer_class=root_module['ns3::EpcS1apSapEnb'])
     ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme [class]
     module.add_class('EpcS1apSapMme', parent=root_module['ns3::EpcS1apSap'])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMmeProvider [class]
-    module.add_class('EpcS1apSapMmeProvider', parent=root_module['ns3::EpcS1apSap'])
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabSetupItem [struct]
+    module.add_class('ErabSetupItem', outer_class=root_module['ns3::EpcS1apSapMme'])
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabSwitchedInDownlinkItem [struct]
+    module.add_class('ErabSwitchedInDownlinkItem', outer_class=root_module['ns3::EpcS1apSapMme'])
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabToBeReleasedIndication [struct]
+    module.add_class('ErabToBeReleasedIndication', outer_class=root_module['ns3::EpcS1apSapMme'])
     ## epc-x2-sap.h (module 'lte'): ns3::EpcX2Sap [class]
     module.add_class('EpcX2Sap')
     ## epc-x2-sap.h (module 'lte'): ns3::EpcX2Sap::UlInterferenceOverloadIndicationItem [enumeration]
@@ -872,10 +868,6 @@ def register_types(module):
     module.add_class('SimpleRefCount', automatic_type_narrowing=True, import_from_module='ns.core', template_parameters=['ns3::NixVector', 'ns3::empty', 'ns3::DefaultDeleter<ns3::NixVector>'], parent=root_module['ns3::empty'], memory_policy=cppclass.ReferenceCountingMethodsPolicy(incref_method='Ref', decref_method='Unref', peekref_method='GetReferenceCount'))
     ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::Packet, ns3::empty, ns3::DefaultDeleter<ns3::Packet> > [class]
     module.add_class('SimpleRefCount', automatic_type_narrowing=True, import_from_module='ns.core', template_parameters=['ns3::Packet', 'ns3::empty', 'ns3::DefaultDeleter<ns3::Packet>'], parent=root_module['ns3::empty'], memory_policy=cppclass.ReferenceCountingMethodsPolicy(incref_method='Ref', decref_method='Unref', peekref_method='GetReferenceCount'))
-    ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::S1apConnectionInfo, ns3::empty, ns3::DefaultDeleter<ns3::S1apConnectionInfo> > [class]
-    module.add_class('SimpleRefCount', automatic_type_narrowing=True, template_parameters=['ns3::S1apConnectionInfo', 'ns3::empty', 'ns3::DefaultDeleter<ns3::S1apConnectionInfo>'], parent=root_module['ns3::empty'], memory_policy=cppclass.ReferenceCountingMethodsPolicy(incref_method='Ref', decref_method='Unref', peekref_method='GetReferenceCount'))
-    ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::S1apIfaceInfo, ns3::empty, ns3::DefaultDeleter<ns3::S1apIfaceInfo> > [class]
-    module.add_class('SimpleRefCount', automatic_type_narrowing=True, template_parameters=['ns3::S1apIfaceInfo', 'ns3::empty', 'ns3::DefaultDeleter<ns3::S1apIfaceInfo>'], parent=root_module['ns3::empty'], memory_policy=cppclass.ReferenceCountingMethodsPolicy(incref_method='Ref', decref_method='Unref', peekref_method='GetReferenceCount'))
     ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::SpectrumModel, ns3::empty, ns3::DefaultDeleter<ns3::SpectrumModel> > [class]
     module.add_class('SimpleRefCount', automatic_type_narrowing=True, import_from_module='ns.core', template_parameters=['ns3::SpectrumModel', 'ns3::empty', 'ns3::DefaultDeleter<ns3::SpectrumModel>'], parent=root_module['ns3::empty'], memory_policy=cppclass.ReferenceCountingMethodsPolicy(incref_method='Ref', decref_method='Unref', peekref_method='GetReferenceCount'))
     ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::SpectrumSignalParameters, ns3::empty, ns3::DefaultDeleter<ns3::SpectrumSignalParameters> > [class]
@@ -1004,28 +996,6 @@ def register_types(module):
     module.add_class('EpcHelper', parent=root_module['ns3::Object'])
     ## epc-mme.h (module 'lte'): ns3::EpcMme [class]
     module.add_class('EpcMme', parent=root_module['ns3::Object'])
-    ## epc-mme-application.h (module 'lte'): ns3::EpcMmeApplication [class]
-    module.add_class('EpcMmeApplication', parent=root_module['ns3::Application'])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APErabReleaseIndicationHeader [class]
-    module.add_class('EpcS1APErabReleaseIndicationHeader', parent=root_module['ns3::Header'])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APHeader [class]
-    module.add_class('EpcS1APHeader', parent=root_module['ns3::Header'])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APHeader::ProcedureCode_t [enumeration]
-    module.add_enum('ProcedureCode_t', ['InitialUeMessage', 'PathSwitchRequest', 'ErabReleaseIndication', 'InitialContextSetupResponse', 'InitialContextSetupRequest', 'PathSwitchRequestAck'], outer_class=root_module['ns3::EpcS1APHeader'])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APInitialContextSetupRequestHeader [class]
-    module.add_class('EpcS1APInitialContextSetupRequestHeader', parent=root_module['ns3::Header'])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APInitialContextSetupResponseHeader [class]
-    module.add_class('EpcS1APInitialContextSetupResponseHeader', parent=root_module['ns3::Header'])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APInitialUeMessageHeader [class]
-    module.add_class('EpcS1APInitialUeMessageHeader', parent=root_module['ns3::Header'])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APPathSwitchRequestAcknowledgeHeader [class]
-    module.add_class('EpcS1APPathSwitchRequestAcknowledgeHeader', parent=root_module['ns3::Header'])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APPathSwitchRequestHeader [class]
-    module.add_class('EpcS1APPathSwitchRequestHeader', parent=root_module['ns3::Header'])
-    ## epc-s1ap.h (module 'lte'): ns3::EpcS1apEnb [class]
-    module.add_class('EpcS1apEnb', parent=root_module['ns3::Object'])
-    ## epc-s1ap.h (module 'lte'): ns3::EpcS1apMme [class]
-    module.add_class('EpcS1apMme', parent=root_module['ns3::Object'])
     ## epc-sgw-pgw-application.h (module 'lte'): ns3::EpcSgwPgwApplication [class]
     module.add_class('EpcSgwPgwApplication', parent=root_module['ns3::Application'])
     ## epc-tft.h (module 'lte'): ns3::EpcTft [class]
@@ -1274,10 +1244,6 @@ def register_types(module):
     module.add_class('RrcUlCcchMessage', parent=root_module['ns3::RrcAsn1Header'])
     ## lte-rrc-header.h (module 'lte'): ns3::RrcUlDcchMessage [class]
     module.add_class('RrcUlDcchMessage', parent=root_module['ns3::RrcAsn1Header'])
-    ## epc-s1ap.h (module 'lte'): ns3::S1apConnectionInfo [class]
-    module.add_class('S1apConnectionInfo', parent=root_module['ns3::SimpleRefCount< ns3::S1apConnectionInfo, ns3::empty, ns3::DefaultDeleter<ns3::S1apConnectionInfo> >'])
-    ## epc-s1ap.h (module 'lte'): ns3::S1apIfaceInfo [class]
-    module.add_class('S1apIfaceInfo', parent=root_module['ns3::SimpleRefCount< ns3::S1apIfaceInfo, ns3::empty, ns3::DefaultDeleter<ns3::S1apIfaceInfo> >'])
     ## lte-control-messages.h (module 'lte'): ns3::Sib1LteControlMessage [class]
     module.add_class('Sib1LteControlMessage', parent=root_module['ns3::LteControlMessage'])
     ## spectrum-channel.h (module 'spectrum'): ns3::SpectrumChannel [class]
@@ -1389,11 +1355,11 @@ def register_types(module):
     module.add_container('std::list< ns3::EpcS11SapSgw::BearerContextToBeCreated >', 'ns3::EpcS11SapSgw::BearerContextToBeCreated', container_type=u'list')
     module.add_container('std::list< ns3::EpcS11SapSgw::BearerContextToBeRemoved >', 'ns3::EpcS11SapSgw::BearerContextToBeRemoved', container_type=u'list')
     module.add_container('std::list< ns3::EpcS11SapSgw::BearerContextRemovedSgwPgw >', 'ns3::EpcS11SapSgw::BearerContextRemovedSgwPgw', container_type=u'list')
-    module.add_container('std::list< ns3::EpcS1apSap::ErabToBeSetupItem >', 'ns3::EpcS1apSap::ErabToBeSetupItem', container_type=u'list')
-    module.add_container('std::list< ns3::EpcS1apSap::ErabSwitchedInUplinkItem >', 'ns3::EpcS1apSap::ErabSwitchedInUplinkItem', container_type=u'list')
-    module.add_container('std::list< ns3::EpcS1apSap::ErabToBeReleasedIndication >', 'ns3::EpcS1apSap::ErabToBeReleasedIndication', container_type=u'list')
-    module.add_container('std::list< ns3::EpcS1apSap::ErabSetupItem >', 'ns3::EpcS1apSap::ErabSetupItem', container_type=u'list')
-    module.add_container('std::list< ns3::EpcS1apSap::ErabSwitchedInDownlinkItem >', 'ns3::EpcS1apSap::ErabSwitchedInDownlinkItem', container_type=u'list')
+    module.add_container('std::list< ns3::EpcS1apSapEnb::ErabToBeSetupItem >', 'ns3::EpcS1apSapEnb::ErabToBeSetupItem', container_type=u'list')
+    module.add_container('std::list< ns3::EpcS1apSapEnb::ErabSwitchedInUplinkItem >', 'ns3::EpcS1apSapEnb::ErabSwitchedInUplinkItem', container_type=u'list')
+    module.add_container('std::list< ns3::EpcS1apSapMme::ErabToBeReleasedIndication >', 'ns3::EpcS1apSapMme::ErabToBeReleasedIndication', container_type=u'list')
+    module.add_container('std::list< ns3::EpcS1apSapMme::ErabSetupItem >', 'ns3::EpcS1apSapMme::ErabSetupItem', container_type=u'list')
+    module.add_container('std::list< ns3::EpcS1apSapMme::ErabSwitchedInDownlinkItem >', 'ns3::EpcS1apSapMme::ErabSwitchedInDownlinkItem', container_type=u'list')
     module.add_container('std::vector< ns3::EpcX2Sap::UlInterferenceOverloadIndicationItem >', 'ns3::EpcX2Sap::UlInterferenceOverloadIndicationItem', container_type=u'vector')
     module.add_container('std::vector< ns3::EpcX2Sap::UlHighInterferenceInformationItem >', 'ns3::EpcX2Sap::UlHighInterferenceInformationItem', container_type=u'vector')
     module.add_container('std::vector< bool >', 'bool', container_type=u'vector')
@@ -1756,15 +1722,13 @@ def register_methods(root_module):
     register_Ns3EpcS11SapSgwDeleteBearerResponseMessage_methods(root_module, root_module['ns3::EpcS11SapSgw::DeleteBearerResponseMessage'])
     register_Ns3EpcS11SapSgwModifyBearerRequestMessage_methods(root_module, root_module['ns3::EpcS11SapSgw::ModifyBearerRequestMessage'])
     register_Ns3EpcS1apSap_methods(root_module, root_module['ns3::EpcS1apSap'])
-    register_Ns3EpcS1apSapErabSetupItem_methods(root_module, root_module['ns3::EpcS1apSap::ErabSetupItem'])
-    register_Ns3EpcS1apSapErabSwitchedInDownlinkItem_methods(root_module, root_module['ns3::EpcS1apSap::ErabSwitchedInDownlinkItem'])
-    register_Ns3EpcS1apSapErabSwitchedInUplinkItem_methods(root_module, root_module['ns3::EpcS1apSap::ErabSwitchedInUplinkItem'])
-    register_Ns3EpcS1apSapErabToBeReleasedIndication_methods(root_module, root_module['ns3::EpcS1apSap::ErabToBeReleasedIndication'])
-    register_Ns3EpcS1apSapErabToBeSetupItem_methods(root_module, root_module['ns3::EpcS1apSap::ErabToBeSetupItem'])
     register_Ns3EpcS1apSapEnb_methods(root_module, root_module['ns3::EpcS1apSapEnb'])
-    register_Ns3EpcS1apSapEnbProvider_methods(root_module, root_module['ns3::EpcS1apSapEnbProvider'])
+    register_Ns3EpcS1apSapEnbErabSwitchedInUplinkItem_methods(root_module, root_module['ns3::EpcS1apSapEnb::ErabSwitchedInUplinkItem'])
+    register_Ns3EpcS1apSapEnbErabToBeSetupItem_methods(root_module, root_module['ns3::EpcS1apSapEnb::ErabToBeSetupItem'])
     register_Ns3EpcS1apSapMme_methods(root_module, root_module['ns3::EpcS1apSapMme'])
-    register_Ns3EpcS1apSapMmeProvider_methods(root_module, root_module['ns3::EpcS1apSapMmeProvider'])
+    register_Ns3EpcS1apSapMmeErabSetupItem_methods(root_module, root_module['ns3::EpcS1apSapMme::ErabSetupItem'])
+    register_Ns3EpcS1apSapMmeErabSwitchedInDownlinkItem_methods(root_module, root_module['ns3::EpcS1apSapMme::ErabSwitchedInDownlinkItem'])
+    register_Ns3EpcS1apSapMmeErabToBeReleasedIndication_methods(root_module, root_module['ns3::EpcS1apSapMme::ErabToBeReleasedIndication'])
     register_Ns3EpcX2Sap_methods(root_module, root_module['ns3::EpcX2Sap'])
     register_Ns3EpcX2SapCellInformationItem_methods(root_module, root_module['ns3::EpcX2Sap::CellInformationItem'])
     register_Ns3EpcX2SapCellMeasurementResultItem_methods(root_module, root_module['ns3::EpcX2Sap::CellMeasurementResultItem'])
@@ -2060,8 +2024,6 @@ def register_methods(root_module):
     register_Ns3SimpleRefCount__Ns3LteHarqPhy_Ns3Empty_Ns3DefaultDeleter__lt__ns3LteHarqPhy__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::LteHarqPhy, ns3::empty, ns3::DefaultDeleter<ns3::LteHarqPhy> >'])
     register_Ns3SimpleRefCount__Ns3NixVector_Ns3Empty_Ns3DefaultDeleter__lt__ns3NixVector__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::NixVector, ns3::empty, ns3::DefaultDeleter<ns3::NixVector> >'])
     register_Ns3SimpleRefCount__Ns3Packet_Ns3Empty_Ns3DefaultDeleter__lt__ns3Packet__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::Packet, ns3::empty, ns3::DefaultDeleter<ns3::Packet> >'])
-    register_Ns3SimpleRefCount__Ns3S1apConnectionInfo_Ns3Empty_Ns3DefaultDeleter__lt__ns3S1apConnectionInfo__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::S1apConnectionInfo, ns3::empty, ns3::DefaultDeleter<ns3::S1apConnectionInfo> >'])
-    register_Ns3SimpleRefCount__Ns3S1apIfaceInfo_Ns3Empty_Ns3DefaultDeleter__lt__ns3S1apIfaceInfo__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::S1apIfaceInfo, ns3::empty, ns3::DefaultDeleter<ns3::S1apIfaceInfo> >'])
     register_Ns3SimpleRefCount__Ns3SpectrumModel_Ns3Empty_Ns3DefaultDeleter__lt__ns3SpectrumModel__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::SpectrumModel, ns3::empty, ns3::DefaultDeleter<ns3::SpectrumModel> >'])
     register_Ns3SimpleRefCount__Ns3SpectrumSignalParameters_Ns3Empty_Ns3DefaultDeleter__lt__ns3SpectrumSignalParameters__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::SpectrumSignalParameters, ns3::empty, ns3::DefaultDeleter<ns3::SpectrumSignalParameters> >'])
     register_Ns3SimpleRefCount__Ns3SpectrumValue_Ns3Empty_Ns3DefaultDeleter__lt__ns3SpectrumValue__gt___methods(root_module, root_module['ns3::SimpleRefCount< ns3::SpectrumValue, ns3::empty, ns3::DefaultDeleter<ns3::SpectrumValue> >'])
@@ -2121,16 +2083,6 @@ def register_methods(root_module):
     register_Ns3EpcEnbApplicationEpsFlowId_t_methods(root_module, root_module['ns3::EpcEnbApplication::EpsFlowId_t'])
     register_Ns3EpcHelper_methods(root_module, root_module['ns3::EpcHelper'])
     register_Ns3EpcMme_methods(root_module, root_module['ns3::EpcMme'])
-    register_Ns3EpcMmeApplication_methods(root_module, root_module['ns3::EpcMmeApplication'])
-    register_Ns3EpcS1APErabReleaseIndicationHeader_methods(root_module, root_module['ns3::EpcS1APErabReleaseIndicationHeader'])
-    register_Ns3EpcS1APHeader_methods(root_module, root_module['ns3::EpcS1APHeader'])
-    register_Ns3EpcS1APInitialContextSetupRequestHeader_methods(root_module, root_module['ns3::EpcS1APInitialContextSetupRequestHeader'])
-    register_Ns3EpcS1APInitialContextSetupResponseHeader_methods(root_module, root_module['ns3::EpcS1APInitialContextSetupResponseHeader'])
-    register_Ns3EpcS1APInitialUeMessageHeader_methods(root_module, root_module['ns3::EpcS1APInitialUeMessageHeader'])
-    register_Ns3EpcS1APPathSwitchRequestAcknowledgeHeader_methods(root_module, root_module['ns3::EpcS1APPathSwitchRequestAcknowledgeHeader'])
-    register_Ns3EpcS1APPathSwitchRequestHeader_methods(root_module, root_module['ns3::EpcS1APPathSwitchRequestHeader'])
-    register_Ns3EpcS1apEnb_methods(root_module, root_module['ns3::EpcS1apEnb'])
-    register_Ns3EpcS1apMme_methods(root_module, root_module['ns3::EpcS1apMme'])
     register_Ns3EpcSgwPgwApplication_methods(root_module, root_module['ns3::EpcSgwPgwApplication'])
     register_Ns3EpcTft_methods(root_module, root_module['ns3::EpcTft'])
     register_Ns3EpcTftPacketFilter_methods(root_module, root_module['ns3::EpcTft::PacketFilter'])
@@ -2243,8 +2195,6 @@ def register_methods(root_module):
     register_Ns3RrcDlDcchMessage_methods(root_module, root_module['ns3::RrcDlDcchMessage'])
     register_Ns3RrcUlCcchMessage_methods(root_module, root_module['ns3::RrcUlCcchMessage'])
     register_Ns3RrcUlDcchMessage_methods(root_module, root_module['ns3::RrcUlDcchMessage'])
-    register_Ns3S1apConnectionInfo_methods(root_module, root_module['ns3::S1apConnectionInfo'])
-    register_Ns3S1apIfaceInfo_methods(root_module, root_module['ns3::S1apIfaceInfo'])
     register_Ns3Sib1LteControlMessage_methods(root_module, root_module['ns3::Sib1LteControlMessage'])
     register_Ns3SpectrumChannel_methods(root_module, root_module['ns3::SpectrumChannel'])
     register_Ns3SrsCqiRntiVsp_methods(root_module, root_module['ns3::SrsCqiRntiVsp'])
@@ -3401,111 +3351,49 @@ def register_Ns3EpcS1apSap_methods(root_module, cls):
     cls.add_constructor([param('ns3::EpcS1apSap const &', 'arg0')])
     return
 
-def register_Ns3EpcS1apSapErabSetupItem_methods(root_module, cls):
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSetupItem::ErabSetupItem() [constructor]
-    cls.add_constructor([])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSetupItem::ErabSetupItem(ns3::EpcS1apSap::ErabSetupItem const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1apSap::ErabSetupItem const &', 'arg0')])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSetupItem::enbTeid [variable]
-    cls.add_instance_attribute('enbTeid', 'uint32_t', is_const=False)
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSetupItem::enbTransportLayerAddress [variable]
-    cls.add_instance_attribute('enbTransportLayerAddress', 'ns3::Ipv4Address', is_const=False)
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSetupItem::erabId [variable]
-    cls.add_instance_attribute('erabId', 'uint16_t', is_const=False)
-    return
-
-def register_Ns3EpcS1apSapErabSwitchedInDownlinkItem_methods(root_module, cls):
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSwitchedInDownlinkItem::ErabSwitchedInDownlinkItem() [constructor]
-    cls.add_constructor([])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSwitchedInDownlinkItem::ErabSwitchedInDownlinkItem(ns3::EpcS1apSap::ErabSwitchedInDownlinkItem const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1apSap::ErabSwitchedInDownlinkItem const &', 'arg0')])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSwitchedInDownlinkItem::enbTeid [variable]
-    cls.add_instance_attribute('enbTeid', 'uint32_t', is_const=False)
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSwitchedInDownlinkItem::enbTransportLayerAddress [variable]
-    cls.add_instance_attribute('enbTransportLayerAddress', 'ns3::Ipv4Address', is_const=False)
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSwitchedInDownlinkItem::erabId [variable]
-    cls.add_instance_attribute('erabId', 'uint16_t', is_const=False)
-    return
-
-def register_Ns3EpcS1apSapErabSwitchedInUplinkItem_methods(root_module, cls):
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSwitchedInUplinkItem::ErabSwitchedInUplinkItem() [constructor]
-    cls.add_constructor([])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSwitchedInUplinkItem::ErabSwitchedInUplinkItem(ns3::EpcS1apSap::ErabSwitchedInUplinkItem const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1apSap::ErabSwitchedInUplinkItem const &', 'arg0')])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSwitchedInUplinkItem::enbTeid [variable]
-    cls.add_instance_attribute('enbTeid', 'uint32_t', is_const=False)
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSwitchedInUplinkItem::erabId [variable]
-    cls.add_instance_attribute('erabId', 'uint8_t', is_const=False)
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabSwitchedInUplinkItem::transportLayerAddress [variable]
-    cls.add_instance_attribute('transportLayerAddress', 'ns3::Ipv4Address', is_const=False)
-    return
-
-def register_Ns3EpcS1apSapErabToBeReleasedIndication_methods(root_module, cls):
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabToBeReleasedIndication::ErabToBeReleasedIndication() [constructor]
-    cls.add_constructor([])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabToBeReleasedIndication::ErabToBeReleasedIndication(ns3::EpcS1apSap::ErabToBeReleasedIndication const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1apSap::ErabToBeReleasedIndication const &', 'arg0')])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabToBeReleasedIndication::erabId [variable]
-    cls.add_instance_attribute('erabId', 'uint8_t', is_const=False)
-    return
-
-def register_Ns3EpcS1apSapErabToBeSetupItem_methods(root_module, cls):
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabToBeSetupItem::ErabToBeSetupItem() [constructor]
-    cls.add_constructor([])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabToBeSetupItem::ErabToBeSetupItem(ns3::EpcS1apSap::ErabToBeSetupItem const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1apSap::ErabToBeSetupItem const &', 'arg0')])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabToBeSetupItem::erabId [variable]
-    cls.add_instance_attribute('erabId', 'uint8_t', is_const=False)
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabToBeSetupItem::erabLevelQosParameters [variable]
-    cls.add_instance_attribute('erabLevelQosParameters', 'ns3::EpsBearer', is_const=False)
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabToBeSetupItem::sgwTeid [variable]
-    cls.add_instance_attribute('sgwTeid', 'uint32_t', is_const=False)
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSap::ErabToBeSetupItem::transportLayerAddress [variable]
-    cls.add_instance_attribute('transportLayerAddress', 'ns3::Ipv4Address', is_const=False)
-    return
-
 def register_Ns3EpcS1apSapEnb_methods(root_module, cls):
     ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::EpcS1apSapEnb() [constructor]
     cls.add_constructor([])
     ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::EpcS1apSapEnb(ns3::EpcS1apSapEnb const & arg0) [copy constructor]
     cls.add_constructor([param('ns3::EpcS1apSapEnb const &', 'arg0')])
-    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapEnb::InitialContextSetupRequest(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, std::list<ns3::EpcS1apSap::ErabToBeSetupItem, std::allocator<ns3::EpcS1apSap::ErabToBeSetupItem> > erabToBeSetupList) [member function]
+    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapEnb::InitialContextSetupRequest(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, std::list<ns3::EpcS1apSapEnb::ErabToBeSetupItem, std::allocator<ns3::EpcS1apSapEnb::ErabToBeSetupItem> > erabToBeSetupList) [member function]
     cls.add_method('InitialContextSetupRequest', 
                    'void', 
-                   [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('std::list< ns3::EpcS1apSap::ErabToBeSetupItem >', 'erabToBeSetupList')], 
+                   [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('std::list< ns3::EpcS1apSapEnb::ErabToBeSetupItem >', 'erabToBeSetupList')], 
                    is_pure_virtual=True, is_virtual=True)
-    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapEnb::PathSwitchRequestAcknowledge(uint64_t enbUeS1Id, uint64_t mmeUeS1Id, uint16_t cgi, std::list<ns3::EpcS1apSap::ErabSwitchedInUplinkItem, std::allocator<ns3::EpcS1apSap::ErabSwitchedInUplinkItem> > erabToBeSwitchedInUplinkList) [member function]
+    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapEnb::PathSwitchRequestAcknowledge(uint64_t enbUeS1Id, uint64_t mmeUeS1Id, uint16_t cgi, std::list<ns3::EpcS1apSapEnb::ErabSwitchedInUplinkItem, std::allocator<ns3::EpcS1apSapEnb::ErabSwitchedInUplinkItem> > erabToBeSwitchedInUplinkList) [member function]
     cls.add_method('PathSwitchRequestAcknowledge', 
                    'void', 
-                   [param('uint64_t', 'enbUeS1Id'), param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'cgi'), param('std::list< ns3::EpcS1apSap::ErabSwitchedInUplinkItem >', 'erabToBeSwitchedInUplinkList')], 
+                   [param('uint64_t', 'enbUeS1Id'), param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'cgi'), param('std::list< ns3::EpcS1apSapEnb::ErabSwitchedInUplinkItem >', 'erabToBeSwitchedInUplinkList')], 
                    is_pure_virtual=True, is_virtual=True)
     return
 
-def register_Ns3EpcS1apSapEnbProvider_methods(root_module, cls):
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnbProvider::EpcS1apSapEnbProvider() [constructor]
+def register_Ns3EpcS1apSapEnbErabSwitchedInUplinkItem_methods(root_module, cls):
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::ErabSwitchedInUplinkItem::ErabSwitchedInUplinkItem() [constructor]
     cls.add_constructor([])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnbProvider::EpcS1apSapEnbProvider(ns3::EpcS1apSapEnbProvider const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1apSapEnbProvider const &', 'arg0')])
-    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapEnbProvider::SendErabReleaseIndication(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, std::list<ns3::EpcS1apSap::ErabToBeReleasedIndication, std::allocator<ns3::EpcS1apSap::ErabToBeReleasedIndication> > erabToBeReleaseIndication) [member function]
-    cls.add_method('SendErabReleaseIndication', 
-                   'void', 
-                   [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('std::list< ns3::EpcS1apSap::ErabToBeReleasedIndication >', 'erabToBeReleaseIndication')], 
-                   is_pure_virtual=True, is_virtual=True)
-    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapEnbProvider::SendInitialContextSetupResponse(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, std::list<ns3::EpcS1apSap::ErabSetupItem, std::allocator<ns3::EpcS1apSap::ErabSetupItem> > erabSetupList) [member function]
-    cls.add_method('SendInitialContextSetupResponse', 
-                   'void', 
-                   [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('std::list< ns3::EpcS1apSap::ErabSetupItem >', 'erabSetupList')], 
-                   is_pure_virtual=True, is_virtual=True)
-    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapEnbProvider::SendInitialUeMessage(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, uint64_t stmsi, uint16_t ecgi) [member function]
-    cls.add_method('SendInitialUeMessage', 
-                   'void', 
-                   [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('uint64_t', 'stmsi'), param('uint16_t', 'ecgi')], 
-                   is_pure_virtual=True, is_virtual=True)
-    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapEnbProvider::SendPathSwitchRequest(uint64_t enbUeS1Id, uint64_t mmeUeS1Id, uint16_t gci, std::list<ns3::EpcS1apSap::ErabSwitchedInDownlinkItem, std::allocator<ns3::EpcS1apSap::ErabSwitchedInDownlinkItem> > erabToBeSwitchedInDownlinkList) [member function]
-    cls.add_method('SendPathSwitchRequest', 
-                   'void', 
-                   [param('uint64_t', 'enbUeS1Id'), param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'gci'), param('std::list< ns3::EpcS1apSap::ErabSwitchedInDownlinkItem >', 'erabToBeSwitchedInDownlinkList')], 
-                   is_pure_virtual=True, is_virtual=True)
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::ErabSwitchedInUplinkItem::ErabSwitchedInUplinkItem(ns3::EpcS1apSapEnb::ErabSwitchedInUplinkItem const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::EpcS1apSapEnb::ErabSwitchedInUplinkItem const &', 'arg0')])
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::ErabSwitchedInUplinkItem::enbTeid [variable]
+    cls.add_instance_attribute('enbTeid', 'uint32_t', is_const=False)
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::ErabSwitchedInUplinkItem::erabId [variable]
+    cls.add_instance_attribute('erabId', 'uint8_t', is_const=False)
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::ErabSwitchedInUplinkItem::transportLayerAddress [variable]
+    cls.add_instance_attribute('transportLayerAddress', 'ns3::Ipv4Address', is_const=False)
+    return
+
+def register_Ns3EpcS1apSapEnbErabToBeSetupItem_methods(root_module, cls):
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::ErabToBeSetupItem::ErabToBeSetupItem() [constructor]
+    cls.add_constructor([])
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::ErabToBeSetupItem::ErabToBeSetupItem(ns3::EpcS1apSapEnb::ErabToBeSetupItem const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::EpcS1apSapEnb::ErabToBeSetupItem const &', 'arg0')])
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::ErabToBeSetupItem::erabId [variable]
+    cls.add_instance_attribute('erabId', 'uint8_t', is_const=False)
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::ErabToBeSetupItem::erabLevelQosParameters [variable]
+    cls.add_instance_attribute('erabLevelQosParameters', 'ns3::EpsBearer', is_const=False)
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::ErabToBeSetupItem::sgwTeid [variable]
+    cls.add_instance_attribute('sgwTeid', 'uint32_t', is_const=False)
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapEnb::ErabToBeSetupItem::transportLayerAddress [variable]
+    cls.add_instance_attribute('transportLayerAddress', 'ns3::Ipv4Address', is_const=False)
     return
 
 def register_Ns3EpcS1apSapMme_methods(root_module, cls):
@@ -3513,43 +3401,61 @@ def register_Ns3EpcS1apSapMme_methods(root_module, cls):
     cls.add_constructor([])
     ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::EpcS1apSapMme(ns3::EpcS1apSapMme const & arg0) [copy constructor]
     cls.add_constructor([param('ns3::EpcS1apSapMme const &', 'arg0')])
-    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapMme::ErabReleaseIndication(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, std::list<ns3::EpcS1apSap::ErabToBeReleasedIndication, std::allocator<ns3::EpcS1apSap::ErabToBeReleasedIndication> > erabToBeReleaseIndication) [member function]
+    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapMme::ErabReleaseIndication(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, std::list<ns3::EpcS1apSapMme::ErabToBeReleasedIndication, std::allocator<ns3::EpcS1apSapMme::ErabToBeReleasedIndication> > erabToBeReleaseIndication) [member function]
     cls.add_method('ErabReleaseIndication', 
                    'void', 
-                   [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('std::list< ns3::EpcS1apSap::ErabToBeReleasedIndication >', 'erabToBeReleaseIndication')], 
+                   [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('std::list< ns3::EpcS1apSapMme::ErabToBeReleasedIndication >', 'erabToBeReleaseIndication')], 
                    is_pure_virtual=True, is_virtual=True)
-    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapMme::InitialContextSetupResponse(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, std::list<ns3::EpcS1apSap::ErabSetupItem, std::allocator<ns3::EpcS1apSap::ErabSetupItem> > erabSetupList) [member function]
+    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapMme::InitialContextSetupResponse(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, std::list<ns3::EpcS1apSapMme::ErabSetupItem, std::allocator<ns3::EpcS1apSapMme::ErabSetupItem> > erabSetupList) [member function]
     cls.add_method('InitialContextSetupResponse', 
                    'void', 
-                   [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('std::list< ns3::EpcS1apSap::ErabSetupItem >', 'erabSetupList')], 
+                   [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('std::list< ns3::EpcS1apSapMme::ErabSetupItem >', 'erabSetupList')], 
                    is_pure_virtual=True, is_virtual=True)
     ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapMme::InitialUeMessage(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, uint64_t stmsi, uint16_t ecgi) [member function]
     cls.add_method('InitialUeMessage', 
                    'void', 
                    [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('uint64_t', 'stmsi'), param('uint16_t', 'ecgi')], 
                    is_pure_virtual=True, is_virtual=True)
-    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapMme::PathSwitchRequest(uint64_t enbUeS1Id, uint64_t mmeUeS1Id, uint16_t gci, std::list<ns3::EpcS1apSap::ErabSwitchedInDownlinkItem, std::allocator<ns3::EpcS1apSap::ErabSwitchedInDownlinkItem> > erabToBeSwitchedInDownlinkList) [member function]
+    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapMme::PathSwitchRequest(uint64_t enbUeS1Id, uint64_t mmeUeS1Id, uint16_t gci, std::list<ns3::EpcS1apSapMme::ErabSwitchedInDownlinkItem, std::allocator<ns3::EpcS1apSapMme::ErabSwitchedInDownlinkItem> > erabToBeSwitchedInDownlinkList) [member function]
     cls.add_method('PathSwitchRequest', 
                    'void', 
-                   [param('uint64_t', 'enbUeS1Id'), param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'gci'), param('std::list< ns3::EpcS1apSap::ErabSwitchedInDownlinkItem >', 'erabToBeSwitchedInDownlinkList')], 
+                   [param('uint64_t', 'enbUeS1Id'), param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'gci'), param('std::list< ns3::EpcS1apSapMme::ErabSwitchedInDownlinkItem >', 'erabToBeSwitchedInDownlinkList')], 
                    is_pure_virtual=True, is_virtual=True)
     return
 
-def register_Ns3EpcS1apSapMmeProvider_methods(root_module, cls):
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMmeProvider::EpcS1apSapMmeProvider() [constructor]
+def register_Ns3EpcS1apSapMmeErabSetupItem_methods(root_module, cls):
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabSetupItem::ErabSetupItem() [constructor]
     cls.add_constructor([])
-    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMmeProvider::EpcS1apSapMmeProvider(ns3::EpcS1apSapMmeProvider const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1apSapMmeProvider const &', 'arg0')])
-    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapMmeProvider::SendInitialContextSetupRequest(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, std::list<ns3::EpcS1apSap::ErabToBeSetupItem, std::allocator<ns3::EpcS1apSap::ErabToBeSetupItem> > erabToBeSetupList, uint16_t cellId) [member function]
-    cls.add_method('SendInitialContextSetupRequest', 
-                   'void', 
-                   [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('std::list< ns3::EpcS1apSap::ErabToBeSetupItem >', 'erabToBeSetupList'), param('uint16_t', 'cellId')], 
-                   is_pure_virtual=True, is_virtual=True)
-    ## epc-s1ap-sap.h (module 'lte'): void ns3::EpcS1apSapMmeProvider::SendPathSwitchRequestAcknowledge(uint64_t enbUeS1Id, uint64_t mmeUeS1Id, uint16_t cgi, std::list<ns3::EpcS1apSap::ErabSwitchedInUplinkItem, std::allocator<ns3::EpcS1apSap::ErabSwitchedInUplinkItem> > erabToBeSwitchedInUplinkList) [member function]
-    cls.add_method('SendPathSwitchRequestAcknowledge', 
-                   'void', 
-                   [param('uint64_t', 'enbUeS1Id'), param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'cgi'), param('std::list< ns3::EpcS1apSap::ErabSwitchedInUplinkItem >', 'erabToBeSwitchedInUplinkList')], 
-                   is_pure_virtual=True, is_virtual=True)
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabSetupItem::ErabSetupItem(ns3::EpcS1apSapMme::ErabSetupItem const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::EpcS1apSapMme::ErabSetupItem const &', 'arg0')])
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabSetupItem::enbTeid [variable]
+    cls.add_instance_attribute('enbTeid', 'uint32_t', is_const=False)
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabSetupItem::enbTransportLayerAddress [variable]
+    cls.add_instance_attribute('enbTransportLayerAddress', 'ns3::Ipv4Address', is_const=False)
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabSetupItem::erabId [variable]
+    cls.add_instance_attribute('erabId', 'uint16_t', is_const=False)
+    return
+
+def register_Ns3EpcS1apSapMmeErabSwitchedInDownlinkItem_methods(root_module, cls):
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabSwitchedInDownlinkItem::ErabSwitchedInDownlinkItem() [constructor]
+    cls.add_constructor([])
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabSwitchedInDownlinkItem::ErabSwitchedInDownlinkItem(ns3::EpcS1apSapMme::ErabSwitchedInDownlinkItem const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::EpcS1apSapMme::ErabSwitchedInDownlinkItem const &', 'arg0')])
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabSwitchedInDownlinkItem::enbTeid [variable]
+    cls.add_instance_attribute('enbTeid', 'uint32_t', is_const=False)
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabSwitchedInDownlinkItem::enbTransportLayerAddress [variable]
+    cls.add_instance_attribute('enbTransportLayerAddress', 'ns3::Ipv4Address', is_const=False)
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabSwitchedInDownlinkItem::erabId [variable]
+    cls.add_instance_attribute('erabId', 'uint16_t', is_const=False)
+    return
+
+def register_Ns3EpcS1apSapMmeErabToBeReleasedIndication_methods(root_module, cls):
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabToBeReleasedIndication::ErabToBeReleasedIndication() [constructor]
+    cls.add_constructor([])
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabToBeReleasedIndication::ErabToBeReleasedIndication(ns3::EpcS1apSapMme::ErabToBeReleasedIndication const & arg0) [copy constructor]
+    cls.add_constructor([param('ns3::EpcS1apSapMme::ErabToBeReleasedIndication const &', 'arg0')])
+    ## epc-s1ap-sap.h (module 'lte'): ns3::EpcS1apSapMme::ErabToBeReleasedIndication::erabId [variable]
+    cls.add_instance_attribute('erabId', 'uint8_t', is_const=False)
     return
 
 def register_Ns3EpcX2Sap_methods(root_module, cls):
@@ -11029,30 +10935,6 @@ def register_Ns3SimpleRefCount__Ns3Packet_Ns3Empty_Ns3DefaultDeleter__lt__ns3Pac
                    is_static=True)
     return
 
-def register_Ns3SimpleRefCount__Ns3S1apConnectionInfo_Ns3Empty_Ns3DefaultDeleter__lt__ns3S1apConnectionInfo__gt___methods(root_module, cls):
-    ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::S1apConnectionInfo, ns3::empty, ns3::DefaultDeleter<ns3::S1apConnectionInfo> >::SimpleRefCount() [constructor]
-    cls.add_constructor([])
-    ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::S1apConnectionInfo, ns3::empty, ns3::DefaultDeleter<ns3::S1apConnectionInfo> >::SimpleRefCount(ns3::SimpleRefCount<ns3::S1apConnectionInfo, ns3::empty, ns3::DefaultDeleter<ns3::S1apConnectionInfo> > const & o) [copy constructor]
-    cls.add_constructor([param('ns3::SimpleRefCount< ns3::S1apConnectionInfo, ns3::empty, ns3::DefaultDeleter< ns3::S1apConnectionInfo > > const &', 'o')])
-    ## simple-ref-count.h (module 'core'): static void ns3::SimpleRefCount<ns3::S1apConnectionInfo, ns3::empty, ns3::DefaultDeleter<ns3::S1apConnectionInfo> >::Cleanup() [member function]
-    cls.add_method('Cleanup', 
-                   'void', 
-                   [], 
-                   is_static=True)
-    return
-
-def register_Ns3SimpleRefCount__Ns3S1apIfaceInfo_Ns3Empty_Ns3DefaultDeleter__lt__ns3S1apIfaceInfo__gt___methods(root_module, cls):
-    ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::S1apIfaceInfo, ns3::empty, ns3::DefaultDeleter<ns3::S1apIfaceInfo> >::SimpleRefCount() [constructor]
-    cls.add_constructor([])
-    ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::S1apIfaceInfo, ns3::empty, ns3::DefaultDeleter<ns3::S1apIfaceInfo> >::SimpleRefCount(ns3::SimpleRefCount<ns3::S1apIfaceInfo, ns3::empty, ns3::DefaultDeleter<ns3::S1apIfaceInfo> > const & o) [copy constructor]
-    cls.add_constructor([param('ns3::SimpleRefCount< ns3::S1apIfaceInfo, ns3::empty, ns3::DefaultDeleter< ns3::S1apIfaceInfo > > const &', 'o')])
-    ## simple-ref-count.h (module 'core'): static void ns3::SimpleRefCount<ns3::S1apIfaceInfo, ns3::empty, ns3::DefaultDeleter<ns3::S1apIfaceInfo> >::Cleanup() [member function]
-    cls.add_method('Cleanup', 
-                   'void', 
-                   [], 
-                   is_static=True)
-    return
-
 def register_Ns3SimpleRefCount__Ns3SpectrumModel_Ns3Empty_Ns3DefaultDeleter__lt__ns3SpectrumModel__gt___methods(root_module, cls):
     ## simple-ref-count.h (module 'core'): ns3::SimpleRefCount<ns3::SpectrumModel, ns3::empty, ns3::DefaultDeleter<ns3::SpectrumModel> >::SimpleRefCount() [constructor]
     cls.add_constructor([])
@@ -13614,10 +13496,10 @@ def register_Ns3EpcEnbApplication_methods(root_module, cls):
     cls.add_method('SetS1SapUser', 
                    'void', 
                    [param('ns3::EpcEnbS1SapUser *', 's')])
-    ## epc-enb-application.h (module 'lte'): void ns3::EpcEnbApplication::SetS1apSapMme(ns3::EpcS1apSapEnbProvider * s) [member function]
+    ## epc-enb-application.h (module 'lte'): void ns3::EpcEnbApplication::SetS1apSapMme(ns3::EpcS1apSapMme * s) [member function]
     cls.add_method('SetS1apSapMme', 
                    'void', 
-                   [param('ns3::EpcS1apSapEnbProvider *', 's')])
+                   [param('ns3::EpcS1apSapMme *', 's')])
     ## epc-enb-application.h (module 'lte'): void ns3::EpcEnbApplication::DoDispose() [member function]
     cls.add_method('DoDispose', 
                    'void', 
@@ -13730,672 +13612,6 @@ def register_Ns3EpcMme_methods(root_module, cls):
     cls.add_method('DoDispose', 
                    'void', 
                    [], 
-                   visibility='protected', is_virtual=True)
-    return
-
-def register_Ns3EpcMmeApplication_methods(root_module, cls):
-    ## epc-mme-application.h (module 'lte'): ns3::EpcMmeApplication::EpcMmeApplication(ns3::EpcMmeApplication const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcMmeApplication const &', 'arg0')])
-    ## epc-mme-application.h (module 'lte'): ns3::EpcMmeApplication::EpcMmeApplication() [constructor]
-    cls.add_constructor([])
-    ## epc-mme-application.h (module 'lte'): uint8_t ns3::EpcMmeApplication::AddBearer(uint64_t imsi, ns3::Ptr<ns3::EpcTft> tft, ns3::EpsBearer bearer) [member function]
-    cls.add_method('AddBearer', 
-                   'uint8_t', 
-                   [param('uint64_t', 'imsi'), param('ns3::Ptr< ns3::EpcTft >', 'tft'), param('ns3::EpsBearer', 'bearer')])
-    ## epc-mme-application.h (module 'lte'): void ns3::EpcMmeApplication::AddEnb(uint16_t ecgi, ns3::Ipv4Address enbS1UAddr) [member function]
-    cls.add_method('AddEnb', 
-                   'void', 
-                   [param('uint16_t', 'ecgi'), param('ns3::Ipv4Address', 'enbS1UAddr')])
-    ## epc-mme-application.h (module 'lte'): void ns3::EpcMmeApplication::AddUe(uint64_t imsi) [member function]
-    cls.add_method('AddUe', 
-                   'void', 
-                   [param('uint64_t', 'imsi')])
-    ## epc-mme-application.h (module 'lte'): ns3::EpcS11SapMme * ns3::EpcMmeApplication::GetS11SapMme() [member function]
-    cls.add_method('GetS11SapMme', 
-                   'ns3::EpcS11SapMme *', 
-                   [])
-    ## epc-mme-application.h (module 'lte'): ns3::EpcS1apSapMme * ns3::EpcMmeApplication::GetS1apSapMme() [member function]
-    cls.add_method('GetS1apSapMme', 
-                   'ns3::EpcS1apSapMme *', 
-                   [])
-    ## epc-mme-application.h (module 'lte'): static ns3::TypeId ns3::EpcMmeApplication::GetTypeId() [member function]
-    cls.add_method('GetTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_static=True)
-    ## epc-mme-application.h (module 'lte'): void ns3::EpcMmeApplication::SetS11SapSgw(ns3::EpcS11SapSgw * s) [member function]
-    cls.add_method('SetS11SapSgw', 
-                   'void', 
-                   [param('ns3::EpcS11SapSgw *', 's')])
-    ## epc-mme-application.h (module 'lte'): void ns3::EpcMmeApplication::SetS1apSapMmeProvider(ns3::EpcS1apSapMmeProvider * provider) [member function]
-    cls.add_method('SetS1apSapMmeProvider', 
-                   'void', 
-                   [param('ns3::EpcS1apSapMmeProvider *', 'provider')])
-    ## epc-mme-application.h (module 'lte'): void ns3::EpcMmeApplication::DoDispose() [member function]
-    cls.add_method('DoDispose', 
-                   'void', 
-                   [], 
-                   visibility='protected', is_virtual=True)
-    return
-
-def register_Ns3EpcS1APErabReleaseIndicationHeader_methods(root_module, cls):
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APErabReleaseIndicationHeader::EpcS1APErabReleaseIndicationHeader(ns3::EpcS1APErabReleaseIndicationHeader const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1APErabReleaseIndicationHeader const &', 'arg0')])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APErabReleaseIndicationHeader::EpcS1APErabReleaseIndicationHeader() [constructor]
-    cls.add_constructor([])
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APErabReleaseIndicationHeader::Deserialize(ns3::Buffer::Iterator start) [member function]
-    cls.add_method('Deserialize', 
-                   'uint32_t', 
-                   [param('ns3::Buffer::Iterator', 'start')], 
-                   is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): uint16_t ns3::EpcS1APErabReleaseIndicationHeader::GetEnbUeS1Id() const [member function]
-    cls.add_method('GetEnbUeS1Id', 
-                   'uint16_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): std::list<ns3::EpcS1apSap::ErabToBeReleasedIndication, std::allocator<ns3::EpcS1apSap::ErabToBeReleasedIndication> > ns3::EpcS1APErabReleaseIndicationHeader::GetErabToBeReleaseIndication() const [member function]
-    cls.add_method('GetErabToBeReleaseIndication', 
-                   'std::list< ns3::EpcS1apSap::ErabToBeReleasedIndication >', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): ns3::TypeId ns3::EpcS1APErabReleaseIndicationHeader::GetInstanceTypeId() const [member function]
-    cls.add_method('GetInstanceTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APErabReleaseIndicationHeader::GetLengthOfIes() const [member function]
-    cls.add_method('GetLengthOfIes', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint64_t ns3::EpcS1APErabReleaseIndicationHeader::GetMmeUeS1Id() const [member function]
-    cls.add_method('GetMmeUeS1Id', 
-                   'uint64_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APErabReleaseIndicationHeader::GetNumberOfIes() const [member function]
-    cls.add_method('GetNumberOfIes', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APErabReleaseIndicationHeader::GetSerializedSize() const [member function]
-    cls.add_method('GetSerializedSize', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): static ns3::TypeId ns3::EpcS1APErabReleaseIndicationHeader::GetTypeId() [member function]
-    cls.add_method('GetTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_static=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APErabReleaseIndicationHeader::Print(std::ostream & os) const [member function]
-    cls.add_method('Print', 
-                   'void', 
-                   [param('std::ostream &', 'os')], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APErabReleaseIndicationHeader::Serialize(ns3::Buffer::Iterator start) const [member function]
-    cls.add_method('Serialize', 
-                   'void', 
-                   [param('ns3::Buffer::Iterator', 'start')], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APErabReleaseIndicationHeader::SetEnbUeS1Id(uint16_t enbUeS1Id) [member function]
-    cls.add_method('SetEnbUeS1Id', 
-                   'void', 
-                   [param('uint16_t', 'enbUeS1Id')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APErabReleaseIndicationHeader::SetErabReleaseIndication(std::list<ns3::EpcS1apSap::ErabToBeReleasedIndication, std::allocator<ns3::EpcS1apSap::ErabToBeReleasedIndication> > erabToBeReleaseIndication) [member function]
-    cls.add_method('SetErabReleaseIndication', 
-                   'void', 
-                   [param('std::list< ns3::EpcS1apSap::ErabToBeReleasedIndication >', 'erabToBeReleaseIndication')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APErabReleaseIndicationHeader::SetMmeUeS1Id(uint64_t mmeUeS1Id) [member function]
-    cls.add_method('SetMmeUeS1Id', 
-                   'void', 
-                   [param('uint64_t', 'mmeUeS1Id')])
-    return
-
-def register_Ns3EpcS1APHeader_methods(root_module, cls):
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APHeader::EpcS1APHeader(ns3::EpcS1APHeader const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1APHeader const &', 'arg0')])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APHeader::EpcS1APHeader() [constructor]
-    cls.add_constructor([])
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APHeader::Deserialize(ns3::Buffer::Iterator start) [member function]
-    cls.add_method('Deserialize', 
-                   'uint32_t', 
-                   [param('ns3::Buffer::Iterator', 'start')], 
-                   is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): ns3::TypeId ns3::EpcS1APHeader::GetInstanceTypeId() const [member function]
-    cls.add_method('GetInstanceTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): uint8_t ns3::EpcS1APHeader::GetProcedureCode() const [member function]
-    cls.add_method('GetProcedureCode', 
-                   'uint8_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APHeader::GetSerializedSize() const [member function]
-    cls.add_method('GetSerializedSize', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): static ns3::TypeId ns3::EpcS1APHeader::GetTypeId() [member function]
-    cls.add_method('GetTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_static=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APHeader::Print(std::ostream & os) const [member function]
-    cls.add_method('Print', 
-                   'void', 
-                   [param('std::ostream &', 'os')], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APHeader::Serialize(ns3::Buffer::Iterator start) const [member function]
-    cls.add_method('Serialize', 
-                   'void', 
-                   [param('ns3::Buffer::Iterator', 'start')], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APHeader::SetLengthOfIes(uint32_t lengthOfIes) [member function]
-    cls.add_method('SetLengthOfIes', 
-                   'void', 
-                   [param('uint32_t', 'lengthOfIes')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APHeader::SetNumberOfIes(uint32_t numberOfIes) [member function]
-    cls.add_method('SetNumberOfIes', 
-                   'void', 
-                   [param('uint32_t', 'numberOfIes')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APHeader::SetProcedureCode(uint8_t procedureCode) [member function]
-    cls.add_method('SetProcedureCode', 
-                   'void', 
-                   [param('uint8_t', 'procedureCode')])
-    return
-
-def register_Ns3EpcS1APInitialContextSetupRequestHeader_methods(root_module, cls):
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APInitialContextSetupRequestHeader::EpcS1APInitialContextSetupRequestHeader(ns3::EpcS1APInitialContextSetupRequestHeader const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1APInitialContextSetupRequestHeader const &', 'arg0')])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APInitialContextSetupRequestHeader::EpcS1APInitialContextSetupRequestHeader() [constructor]
-    cls.add_constructor([])
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APInitialContextSetupRequestHeader::Deserialize(ns3::Buffer::Iterator start) [member function]
-    cls.add_method('Deserialize', 
-                   'uint32_t', 
-                   [param('ns3::Buffer::Iterator', 'start')], 
-                   is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): uint16_t ns3::EpcS1APInitialContextSetupRequestHeader::GetEnbUeS1Id() const [member function]
-    cls.add_method('GetEnbUeS1Id', 
-                   'uint16_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): std::list<ns3::EpcS1apSap::ErabToBeSetupItem, std::allocator<ns3::EpcS1apSap::ErabToBeSetupItem> > ns3::EpcS1APInitialContextSetupRequestHeader::GetErabToBeSetupItem() const [member function]
-    cls.add_method('GetErabToBeSetupItem', 
-                   'std::list< ns3::EpcS1apSap::ErabToBeSetupItem >', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): ns3::TypeId ns3::EpcS1APInitialContextSetupRequestHeader::GetInstanceTypeId() const [member function]
-    cls.add_method('GetInstanceTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APInitialContextSetupRequestHeader::GetLengthOfIes() const [member function]
-    cls.add_method('GetLengthOfIes', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint64_t ns3::EpcS1APInitialContextSetupRequestHeader::GetMmeUeS1Id() const [member function]
-    cls.add_method('GetMmeUeS1Id', 
-                   'uint64_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APInitialContextSetupRequestHeader::GetNumberOfIes() const [member function]
-    cls.add_method('GetNumberOfIes', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APInitialContextSetupRequestHeader::GetSerializedSize() const [member function]
-    cls.add_method('GetSerializedSize', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): static ns3::TypeId ns3::EpcS1APInitialContextSetupRequestHeader::GetTypeId() [member function]
-    cls.add_method('GetTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_static=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialContextSetupRequestHeader::Print(std::ostream & os) const [member function]
-    cls.add_method('Print', 
-                   'void', 
-                   [param('std::ostream &', 'os')], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialContextSetupRequestHeader::Serialize(ns3::Buffer::Iterator start) const [member function]
-    cls.add_method('Serialize', 
-                   'void', 
-                   [param('ns3::Buffer::Iterator', 'start')], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialContextSetupRequestHeader::SetEnbUeS1Id(uint16_t enbUeS1Id) [member function]
-    cls.add_method('SetEnbUeS1Id', 
-                   'void', 
-                   [param('uint16_t', 'enbUeS1Id')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialContextSetupRequestHeader::SetErabToBeSetupItem(std::list<ns3::EpcS1apSap::ErabToBeSetupItem, std::allocator<ns3::EpcS1apSap::ErabToBeSetupItem> > erabToBeSetupList) [member function]
-    cls.add_method('SetErabToBeSetupItem', 
-                   'void', 
-                   [param('std::list< ns3::EpcS1apSap::ErabToBeSetupItem >', 'erabToBeSetupList')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialContextSetupRequestHeader::SetMmeUeS1Id(uint64_t mmeUeS1Id) [member function]
-    cls.add_method('SetMmeUeS1Id', 
-                   'void', 
-                   [param('uint64_t', 'mmeUeS1Id')])
-    return
-
-def register_Ns3EpcS1APInitialContextSetupResponseHeader_methods(root_module, cls):
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APInitialContextSetupResponseHeader::EpcS1APInitialContextSetupResponseHeader(ns3::EpcS1APInitialContextSetupResponseHeader const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1APInitialContextSetupResponseHeader const &', 'arg0')])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APInitialContextSetupResponseHeader::EpcS1APInitialContextSetupResponseHeader() [constructor]
-    cls.add_constructor([])
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APInitialContextSetupResponseHeader::Deserialize(ns3::Buffer::Iterator start) [member function]
-    cls.add_method('Deserialize', 
-                   'uint32_t', 
-                   [param('ns3::Buffer::Iterator', 'start')], 
-                   is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): uint16_t ns3::EpcS1APInitialContextSetupResponseHeader::GetEnbUeS1Id() const [member function]
-    cls.add_method('GetEnbUeS1Id', 
-                   'uint16_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): std::list<ns3::EpcS1apSap::ErabSetupItem, std::allocator<ns3::EpcS1apSap::ErabSetupItem> > ns3::EpcS1APInitialContextSetupResponseHeader::GetErabSetupItem() const [member function]
-    cls.add_method('GetErabSetupItem', 
-                   'std::list< ns3::EpcS1apSap::ErabSetupItem >', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): ns3::TypeId ns3::EpcS1APInitialContextSetupResponseHeader::GetInstanceTypeId() const [member function]
-    cls.add_method('GetInstanceTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APInitialContextSetupResponseHeader::GetLengthOfIes() const [member function]
-    cls.add_method('GetLengthOfIes', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint64_t ns3::EpcS1APInitialContextSetupResponseHeader::GetMmeUeS1Id() const [member function]
-    cls.add_method('GetMmeUeS1Id', 
-                   'uint64_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APInitialContextSetupResponseHeader::GetNumberOfIes() const [member function]
-    cls.add_method('GetNumberOfIes', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APInitialContextSetupResponseHeader::GetSerializedSize() const [member function]
-    cls.add_method('GetSerializedSize', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): static ns3::TypeId ns3::EpcS1APInitialContextSetupResponseHeader::GetTypeId() [member function]
-    cls.add_method('GetTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_static=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialContextSetupResponseHeader::Print(std::ostream & os) const [member function]
-    cls.add_method('Print', 
-                   'void', 
-                   [param('std::ostream &', 'os')], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialContextSetupResponseHeader::Serialize(ns3::Buffer::Iterator start) const [member function]
-    cls.add_method('Serialize', 
-                   'void', 
-                   [param('ns3::Buffer::Iterator', 'start')], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialContextSetupResponseHeader::SetEnbUeS1Id(uint16_t enbUeS1Id) [member function]
-    cls.add_method('SetEnbUeS1Id', 
-                   'void', 
-                   [param('uint16_t', 'enbUeS1Id')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialContextSetupResponseHeader::SetErabSetupItem(std::list<ns3::EpcS1apSap::ErabSetupItem, std::allocator<ns3::EpcS1apSap::ErabSetupItem> > erabSetupList) [member function]
-    cls.add_method('SetErabSetupItem', 
-                   'void', 
-                   [param('std::list< ns3::EpcS1apSap::ErabSetupItem >', 'erabSetupList')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialContextSetupResponseHeader::SetMmeUeS1Id(uint64_t mmeUeS1Id) [member function]
-    cls.add_method('SetMmeUeS1Id', 
-                   'void', 
-                   [param('uint64_t', 'mmeUeS1Id')])
-    return
-
-def register_Ns3EpcS1APInitialUeMessageHeader_methods(root_module, cls):
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APInitialUeMessageHeader::EpcS1APInitialUeMessageHeader(ns3::EpcS1APInitialUeMessageHeader const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1APInitialUeMessageHeader const &', 'arg0')])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APInitialUeMessageHeader::EpcS1APInitialUeMessageHeader() [constructor]
-    cls.add_constructor([])
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APInitialUeMessageHeader::Deserialize(ns3::Buffer::Iterator start) [member function]
-    cls.add_method('Deserialize', 
-                   'uint32_t', 
-                   [param('ns3::Buffer::Iterator', 'start')], 
-                   is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): uint16_t ns3::EpcS1APInitialUeMessageHeader::GetEcgi() const [member function]
-    cls.add_method('GetEcgi', 
-                   'uint16_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint16_t ns3::EpcS1APInitialUeMessageHeader::GetEnbUeS1Id() const [member function]
-    cls.add_method('GetEnbUeS1Id', 
-                   'uint16_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): ns3::TypeId ns3::EpcS1APInitialUeMessageHeader::GetInstanceTypeId() const [member function]
-    cls.add_method('GetInstanceTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APInitialUeMessageHeader::GetLengthOfIes() const [member function]
-    cls.add_method('GetLengthOfIes', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint64_t ns3::EpcS1APInitialUeMessageHeader::GetMmeUeS1Id() const [member function]
-    cls.add_method('GetMmeUeS1Id', 
-                   'uint64_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APInitialUeMessageHeader::GetNumberOfIes() const [member function]
-    cls.add_method('GetNumberOfIes', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint64_t ns3::EpcS1APInitialUeMessageHeader::GetSTmsi() const [member function]
-    cls.add_method('GetSTmsi', 
-                   'uint64_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APInitialUeMessageHeader::GetSerializedSize() const [member function]
-    cls.add_method('GetSerializedSize', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): static ns3::TypeId ns3::EpcS1APInitialUeMessageHeader::GetTypeId() [member function]
-    cls.add_method('GetTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_static=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialUeMessageHeader::Print(std::ostream & os) const [member function]
-    cls.add_method('Print', 
-                   'void', 
-                   [param('std::ostream &', 'os')], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialUeMessageHeader::Serialize(ns3::Buffer::Iterator start) const [member function]
-    cls.add_method('Serialize', 
-                   'void', 
-                   [param('ns3::Buffer::Iterator', 'start')], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialUeMessageHeader::SetEcgi(uint16_t ecgi) [member function]
-    cls.add_method('SetEcgi', 
-                   'void', 
-                   [param('uint16_t', 'ecgi')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialUeMessageHeader::SetEnbUeS1Id(uint16_t enbUeS1Id) [member function]
-    cls.add_method('SetEnbUeS1Id', 
-                   'void', 
-                   [param('uint16_t', 'enbUeS1Id')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialUeMessageHeader::SetMmeUeS1Id(uint64_t mmeUeS1Id) [member function]
-    cls.add_method('SetMmeUeS1Id', 
-                   'void', 
-                   [param('uint64_t', 'mmeUeS1Id')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APInitialUeMessageHeader::SetSTmsi(uint64_t stmsi) [member function]
-    cls.add_method('SetSTmsi', 
-                   'void', 
-                   [param('uint64_t', 'stmsi')])
-    return
-
-def register_Ns3EpcS1APPathSwitchRequestAcknowledgeHeader_methods(root_module, cls):
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::EpcS1APPathSwitchRequestAcknowledgeHeader(ns3::EpcS1APPathSwitchRequestAcknowledgeHeader const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1APPathSwitchRequestAcknowledgeHeader const &', 'arg0')])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::EpcS1APPathSwitchRequestAcknowledgeHeader() [constructor]
-    cls.add_constructor([])
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::Deserialize(ns3::Buffer::Iterator start) [member function]
-    cls.add_method('Deserialize', 
-                   'uint32_t', 
-                   [param('ns3::Buffer::Iterator', 'start')], 
-                   is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): uint16_t ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::GetEcgi() const [member function]
-    cls.add_method('GetEcgi', 
-                   'uint16_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint16_t ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::GetEnbUeS1Id() const [member function]
-    cls.add_method('GetEnbUeS1Id', 
-                   'uint16_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): std::list<ns3::EpcS1apSap::ErabSwitchedInUplinkItem, std::allocator<ns3::EpcS1apSap::ErabSwitchedInUplinkItem> > ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::GetErabSwitchedInUplinkItemList() const [member function]
-    cls.add_method('GetErabSwitchedInUplinkItemList', 
-                   'std::list< ns3::EpcS1apSap::ErabSwitchedInUplinkItem >', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): ns3::TypeId ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::GetInstanceTypeId() const [member function]
-    cls.add_method('GetInstanceTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::GetLengthOfIes() const [member function]
-    cls.add_method('GetLengthOfIes', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint64_t ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::GetMmeUeS1Id() const [member function]
-    cls.add_method('GetMmeUeS1Id', 
-                   'uint64_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::GetNumberOfIes() const [member function]
-    cls.add_method('GetNumberOfIes', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::GetSerializedSize() const [member function]
-    cls.add_method('GetSerializedSize', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): static ns3::TypeId ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::GetTypeId() [member function]
-    cls.add_method('GetTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_static=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::Print(std::ostream & os) const [member function]
-    cls.add_method('Print', 
-                   'void', 
-                   [param('std::ostream &', 'os')], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::Serialize(ns3::Buffer::Iterator start) const [member function]
-    cls.add_method('Serialize', 
-                   'void', 
-                   [param('ns3::Buffer::Iterator', 'start')], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::SetEcgi(uint16_t ecgi) [member function]
-    cls.add_method('SetEcgi', 
-                   'void', 
-                   [param('uint16_t', 'ecgi')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::SetEnbUeS1Id(uint16_t enbUeS1Id) [member function]
-    cls.add_method('SetEnbUeS1Id', 
-                   'void', 
-                   [param('uint16_t', 'enbUeS1Id')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::SetErabSwitchedInUplinkItemList(std::list<ns3::EpcS1apSap::ErabSwitchedInUplinkItem, std::allocator<ns3::EpcS1apSap::ErabSwitchedInUplinkItem> > erabToBeSwitchedInDownlinkList) [member function]
-    cls.add_method('SetErabSwitchedInUplinkItemList', 
-                   'void', 
-                   [param('std::list< ns3::EpcS1apSap::ErabSwitchedInUplinkItem >', 'erabToBeSwitchedInDownlinkList')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APPathSwitchRequestAcknowledgeHeader::SetMmeUeS1Id(uint64_t mmeUeS1Id) [member function]
-    cls.add_method('SetMmeUeS1Id', 
-                   'void', 
-                   [param('uint64_t', 'mmeUeS1Id')])
-    return
-
-def register_Ns3EpcS1APPathSwitchRequestHeader_methods(root_module, cls):
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APPathSwitchRequestHeader::EpcS1APPathSwitchRequestHeader(ns3::EpcS1APPathSwitchRequestHeader const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1APPathSwitchRequestHeader const &', 'arg0')])
-    ## epc-s1ap-header.h (module 'lte'): ns3::EpcS1APPathSwitchRequestHeader::EpcS1APPathSwitchRequestHeader() [constructor]
-    cls.add_constructor([])
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APPathSwitchRequestHeader::Deserialize(ns3::Buffer::Iterator start) [member function]
-    cls.add_method('Deserialize', 
-                   'uint32_t', 
-                   [param('ns3::Buffer::Iterator', 'start')], 
-                   is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): uint16_t ns3::EpcS1APPathSwitchRequestHeader::GetEcgi() const [member function]
-    cls.add_method('GetEcgi', 
-                   'uint16_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint16_t ns3::EpcS1APPathSwitchRequestHeader::GetEnbUeS1Id() const [member function]
-    cls.add_method('GetEnbUeS1Id', 
-                   'uint16_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): std::list<ns3::EpcS1apSap::ErabSwitchedInDownlinkItem, std::allocator<ns3::EpcS1apSap::ErabSwitchedInDownlinkItem> > ns3::EpcS1APPathSwitchRequestHeader::GetErabSwitchedInDownlinkItemList() const [member function]
-    cls.add_method('GetErabSwitchedInDownlinkItemList', 
-                   'std::list< ns3::EpcS1apSap::ErabSwitchedInDownlinkItem >', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): ns3::TypeId ns3::EpcS1APPathSwitchRequestHeader::GetInstanceTypeId() const [member function]
-    cls.add_method('GetInstanceTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APPathSwitchRequestHeader::GetLengthOfIes() const [member function]
-    cls.add_method('GetLengthOfIes', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint64_t ns3::EpcS1APPathSwitchRequestHeader::GetMmeUeS1Id() const [member function]
-    cls.add_method('GetMmeUeS1Id', 
-                   'uint64_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APPathSwitchRequestHeader::GetNumberOfIes() const [member function]
-    cls.add_method('GetNumberOfIes', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True)
-    ## epc-s1ap-header.h (module 'lte'): uint32_t ns3::EpcS1APPathSwitchRequestHeader::GetSerializedSize() const [member function]
-    cls.add_method('GetSerializedSize', 
-                   'uint32_t', 
-                   [], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): static ns3::TypeId ns3::EpcS1APPathSwitchRequestHeader::GetTypeId() [member function]
-    cls.add_method('GetTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_static=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APPathSwitchRequestHeader::Print(std::ostream & os) const [member function]
-    cls.add_method('Print', 
-                   'void', 
-                   [param('std::ostream &', 'os')], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APPathSwitchRequestHeader::Serialize(ns3::Buffer::Iterator start) const [member function]
-    cls.add_method('Serialize', 
-                   'void', 
-                   [param('ns3::Buffer::Iterator', 'start')], 
-                   is_const=True, is_virtual=True)
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APPathSwitchRequestHeader::SetEcgi(uint16_t ecgi) [member function]
-    cls.add_method('SetEcgi', 
-                   'void', 
-                   [param('uint16_t', 'ecgi')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APPathSwitchRequestHeader::SetEnbUeS1Id(uint16_t enbUeS1Id) [member function]
-    cls.add_method('SetEnbUeS1Id', 
-                   'void', 
-                   [param('uint16_t', 'enbUeS1Id')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APPathSwitchRequestHeader::SetErabSwitchedInDownlinkItemList(std::list<ns3::EpcS1apSap::ErabSwitchedInDownlinkItem, std::allocator<ns3::EpcS1apSap::ErabSwitchedInDownlinkItem> > erabToBeSwitchedInDownlinkList) [member function]
-    cls.add_method('SetErabSwitchedInDownlinkItemList', 
-                   'void', 
-                   [param('std::list< ns3::EpcS1apSap::ErabSwitchedInDownlinkItem >', 'erabToBeSwitchedInDownlinkList')])
-    ## epc-s1ap-header.h (module 'lte'): void ns3::EpcS1APPathSwitchRequestHeader::SetMmeUeS1Id(uint64_t mmeUeS1Id) [member function]
-    cls.add_method('SetMmeUeS1Id', 
-                   'void', 
-                   [param('uint64_t', 'mmeUeS1Id')])
-    return
-
-def register_Ns3EpcS1apEnb_methods(root_module, cls):
-    ## epc-s1ap.h (module 'lte'): ns3::EpcS1apEnb::EpcS1apEnb(ns3::EpcS1apEnb const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1apEnb const &', 'arg0')])
-    ## epc-s1ap.h (module 'lte'): ns3::EpcS1apEnb::EpcS1apEnb(ns3::Ptr<ns3::Socket> localSocket, ns3::Ipv4Address enbAddress, ns3::Ipv4Address mmeAddress, uint16_t cellId, uint16_t mmeId) [constructor]
-    cls.add_constructor([param('ns3::Ptr< ns3::Socket >', 'localSocket'), param('ns3::Ipv4Address', 'enbAddress'), param('ns3::Ipv4Address', 'mmeAddress'), param('uint16_t', 'cellId'), param('uint16_t', 'mmeId')])
-    ## epc-s1ap.h (module 'lte'): void ns3::EpcS1apEnb::AddS1apInterface(uint16_t enbId, ns3::Ipv4Address enbAddress, uint16_t mmeId, ns3::Ipv4Address mmeAddress, ns3::Ptr<ns3::Socket> localS1apSocket) [member function]
-    cls.add_method('AddS1apInterface', 
-                   'void', 
-                   [param('uint16_t', 'enbId'), param('ns3::Ipv4Address', 'enbAddress'), param('uint16_t', 'mmeId'), param('ns3::Ipv4Address', 'mmeAddress'), param('ns3::Ptr< ns3::Socket >', 'localS1apSocket')])
-    ## epc-s1ap.h (module 'lte'): void ns3::EpcS1apEnb::DoDispose() [member function]
-    cls.add_method('DoDispose', 
-                   'void', 
-                   [], 
-                   is_virtual=True)
-    ## epc-s1ap.h (module 'lte'): ns3::EpcS1apSapEnbProvider * ns3::EpcS1apEnb::GetEpcS1apSapEnbProvider() [member function]
-    cls.add_method('GetEpcS1apSapEnbProvider', 
-                   'ns3::EpcS1apSapEnbProvider *', 
-                   [])
-    ## epc-s1ap.h (module 'lte'): static ns3::TypeId ns3::EpcS1apEnb::GetTypeId() [member function]
-    cls.add_method('GetTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_static=True)
-    ## epc-s1ap.h (module 'lte'): void ns3::EpcS1apEnb::RecvFromS1apSocket(ns3::Ptr<ns3::Socket> socket) [member function]
-    cls.add_method('RecvFromS1apSocket', 
-                   'void', 
-                   [param('ns3::Ptr< ns3::Socket >', 'socket')])
-    ## epc-s1ap.h (module 'lte'): void ns3::EpcS1apEnb::SetEpcS1apSapEnbUser(ns3::EpcS1apSapEnb * s) [member function]
-    cls.add_method('SetEpcS1apSapEnbUser', 
-                   'void', 
-                   [param('ns3::EpcS1apSapEnb *', 's')])
-    ## epc-s1ap.h (module 'lte'): void ns3::EpcS1apEnb::DoSendErabReleaseIndication(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, std::list<ns3::EpcS1apSap::ErabToBeReleasedIndication, std::allocator<ns3::EpcS1apSap::ErabToBeReleasedIndication> > erabToBeReleaseIndication) [member function]
-    cls.add_method('DoSendErabReleaseIndication', 
-                   'void', 
-                   [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('std::list< ns3::EpcS1apSap::ErabToBeReleasedIndication >', 'erabToBeReleaseIndication')], 
-                   visibility='protected', is_virtual=True)
-    ## epc-s1ap.h (module 'lte'): void ns3::EpcS1apEnb::DoSendInitialContextSetupResponse(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, std::list<ns3::EpcS1apSap::ErabSetupItem, std::allocator<ns3::EpcS1apSap::ErabSetupItem> > erabSetupList) [member function]
-    cls.add_method('DoSendInitialContextSetupResponse', 
-                   'void', 
-                   [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('std::list< ns3::EpcS1apSap::ErabSetupItem >', 'erabSetupList')], 
-                   visibility='protected', is_virtual=True)
-    ## epc-s1ap.h (module 'lte'): void ns3::EpcS1apEnb::DoSendInitialUeMessage(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, uint64_t stmsi, uint16_t ecgi) [member function]
-    cls.add_method('DoSendInitialUeMessage', 
-                   'void', 
-                   [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('uint64_t', 'stmsi'), param('uint16_t', 'ecgi')], 
-                   visibility='protected', is_virtual=True)
-    ## epc-s1ap.h (module 'lte'): void ns3::EpcS1apEnb::DoSendPathSwitchRequest(uint64_t enbUeS1Id, uint64_t mmeUeS1Id, uint16_t gci, std::list<ns3::EpcS1apSap::ErabSwitchedInDownlinkItem, std::allocator<ns3::EpcS1apSap::ErabSwitchedInDownlinkItem> > erabToBeSwitchedInDownlinkList) [member function]
-    cls.add_method('DoSendPathSwitchRequest', 
-                   'void', 
-                   [param('uint64_t', 'enbUeS1Id'), param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'gci'), param('std::list< ns3::EpcS1apSap::ErabSwitchedInDownlinkItem >', 'erabToBeSwitchedInDownlinkList')], 
-                   visibility='protected', is_virtual=True)
-    return
-
-def register_Ns3EpcS1apMme_methods(root_module, cls):
-    ## epc-s1ap.h (module 'lte'): ns3::EpcS1apMme::EpcS1apMme(ns3::EpcS1apMme const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::EpcS1apMme const &', 'arg0')])
-    ## epc-s1ap.h (module 'lte'): ns3::EpcS1apMme::EpcS1apMme(ns3::Ptr<ns3::Socket> const s1apSocket, uint16_t mmeId) [constructor]
-    cls.add_constructor([param('ns3::Ptr< ns3::Socket > const', 's1apSocket'), param('uint16_t', 'mmeId')])
-    ## epc-s1ap.h (module 'lte'): void ns3::EpcS1apMme::AddS1apInterface(uint16_t enbId, ns3::Ipv4Address enbAddress) [member function]
-    cls.add_method('AddS1apInterface', 
-                   'void', 
-                   [param('uint16_t', 'enbId'), param('ns3::Ipv4Address', 'enbAddress')])
-    ## epc-s1ap.h (module 'lte'): void ns3::EpcS1apMme::DoDispose() [member function]
-    cls.add_method('DoDispose', 
-                   'void', 
-                   [], 
-                   is_virtual=True)
-    ## epc-s1ap.h (module 'lte'): ns3::EpcS1apSapMmeProvider * ns3::EpcS1apMme::GetEpcS1apSapMmeProvider() [member function]
-    cls.add_method('GetEpcS1apSapMmeProvider', 
-                   'ns3::EpcS1apSapMmeProvider *', 
-                   [])
-    ## epc-s1ap.h (module 'lte'): static ns3::TypeId ns3::EpcS1apMme::GetTypeId() [member function]
-    cls.add_method('GetTypeId', 
-                   'ns3::TypeId', 
-                   [], 
-                   is_static=True)
-    ## epc-s1ap.h (module 'lte'): void ns3::EpcS1apMme::RecvFromS1apSocket(ns3::Ptr<ns3::Socket> socket) [member function]
-    cls.add_method('RecvFromS1apSocket', 
-                   'void', 
-                   [param('ns3::Ptr< ns3::Socket >', 'socket')])
-    ## epc-s1ap.h (module 'lte'): void ns3::EpcS1apMme::SetEpcS1apSapMmeUser(ns3::EpcS1apSapMme * s) [member function]
-    cls.add_method('SetEpcS1apSapMmeUser', 
-                   'void', 
-                   [param('ns3::EpcS1apSapMme *', 's')])
-    ## epc-s1ap.h (module 'lte'): void ns3::EpcS1apMme::DoSendInitialContextSetupRequest(uint64_t mmeUeS1Id, uint16_t enbUeS1Id, std::list<ns3::EpcS1apSap::ErabToBeSetupItem, std::allocator<ns3::EpcS1apSap::ErabToBeSetupItem> > erabToBeSetupList, uint16_t cellId) [member function]
-    cls.add_method('DoSendInitialContextSetupRequest', 
-                   'void', 
-                   [param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'enbUeS1Id'), param('std::list< ns3::EpcS1apSap::ErabToBeSetupItem >', 'erabToBeSetupList'), param('uint16_t', 'cellId')], 
-                   visibility='protected', is_virtual=True)
-    ## epc-s1ap.h (module 'lte'): void ns3::EpcS1apMme::DoSendPathSwitchRequestAcknowledge(uint64_t enbUeS1Id, uint64_t mmeUeS1Id, uint16_t cgi, std::list<ns3::EpcS1apSap::ErabSwitchedInUplinkItem, std::allocator<ns3::EpcS1apSap::ErabSwitchedInUplinkItem> > erabToBeSwitchedInUplinkList) [member function]
-    cls.add_method('DoSendPathSwitchRequestAcknowledge', 
-                   'void', 
-                   [param('uint64_t', 'enbUeS1Id'), param('uint64_t', 'mmeUeS1Id'), param('uint16_t', 'cgi'), param('std::list< ns3::EpcS1apSap::ErabSwitchedInUplinkItem >', 'erabToBeSwitchedInUplinkList')], 
                    visibility='protected', is_virtual=True)
     return
 
@@ -20265,11 +19481,6 @@ def register_Ns3PointToPointEpcHelper_methods(root_module, cls):
                    'void', 
                    [], 
                    is_virtual=True)
-    ## point-to-point-epc-helper.h (module 'lte'): ns3::Ptr<ns3::Node> ns3::PointToPointEpcHelper::GetMmeNode() [member function]
-    cls.add_method('GetMmeNode', 
-                   'ns3::Ptr< ns3::Node >', 
-                   [], 
-                   is_virtual=True)
     ## point-to-point-epc-helper.h (module 'lte'): ns3::Ptr<ns3::Node> ns3::PointToPointEpcHelper::GetPgwNode() [member function]
     cls.add_method('GetPgwNode', 
                    'ns3::Ptr< ns3::Node >', 
@@ -21068,28 +20279,6 @@ def register_Ns3RrcUlDcchMessage_methods(root_module, cls):
                    'void', 
                    [param('int', 'msgType')], 
                    is_const=True, visibility='protected')
-    return
-
-def register_Ns3S1apConnectionInfo_methods(root_module, cls):
-    ## epc-s1ap.h (module 'lte'): ns3::S1apConnectionInfo::S1apConnectionInfo(ns3::S1apConnectionInfo const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::S1apConnectionInfo const &', 'arg0')])
-    ## epc-s1ap.h (module 'lte'): ns3::S1apConnectionInfo::S1apConnectionInfo(uint16_t enbId, uint16_t mmeId) [constructor]
-    cls.add_constructor([param('uint16_t', 'enbId'), param('uint16_t', 'mmeId')])
-    ## epc-s1ap.h (module 'lte'): ns3::S1apConnectionInfo::m_enbId [variable]
-    cls.add_instance_attribute('m_enbId', 'uint16_t', is_const=False)
-    ## epc-s1ap.h (module 'lte'): ns3::S1apConnectionInfo::m_mmeId [variable]
-    cls.add_instance_attribute('m_mmeId', 'uint16_t', is_const=False)
-    return
-
-def register_Ns3S1apIfaceInfo_methods(root_module, cls):
-    ## epc-s1ap.h (module 'lte'): ns3::S1apIfaceInfo::S1apIfaceInfo(ns3::S1apIfaceInfo const & arg0) [copy constructor]
-    cls.add_constructor([param('ns3::S1apIfaceInfo const &', 'arg0')])
-    ## epc-s1ap.h (module 'lte'): ns3::S1apIfaceInfo::S1apIfaceInfo(ns3::Ipv4Address remoteIpAddr, ns3::Ptr<ns3::Socket> localCtrlPlaneSocket) [constructor]
-    cls.add_constructor([param('ns3::Ipv4Address', 'remoteIpAddr'), param('ns3::Ptr< ns3::Socket >', 'localCtrlPlaneSocket')])
-    ## epc-s1ap.h (module 'lte'): ns3::S1apIfaceInfo::m_localCtrlPlaneSocket [variable]
-    cls.add_instance_attribute('m_localCtrlPlaneSocket', 'ns3::Ptr< ns3::Socket >', is_const=False)
-    ## epc-s1ap.h (module 'lte'): ns3::S1apIfaceInfo::m_remoteIpAddr [variable]
-    cls.add_instance_attribute('m_remoteIpAddr', 'ns3::Ipv4Address', is_const=False)
     return
 
 def register_Ns3Sib1LteControlMessage_methods(root_module, cls):
