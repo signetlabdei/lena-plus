@@ -395,9 +395,9 @@ LteEnbMac::LteEnbMac ()
   m_schedSapUser = new EnbMacMemberFfMacSchedSapUser (this);
   m_cschedSapUser = new EnbMacMemberFfMacCschedSapUser (this);
   m_enbPhySapUser = new EnbMacMemberLteEnbPhySapUser (this);
-  m_random = CreateObject<UniformRandomVariable> ();
-  m_random->SetAttribute ("Min", DoubleValue (0.0));
-  m_random->SetAttribute ("Max", DoubleValue (1.0));
+  //m_random = CreateObject<UniformRandomVariable> ();
+  //m_random->SetAttribute ("Min", DoubleValue (0.0));
+  //m_random->SetAttribute ("Max", DoubleValue (1.0));
 }
 
 
@@ -1343,12 +1343,12 @@ LteEnbMac::EvaluateCollisionProbability(std::list<Vector> pointList)
   return collisionProbability;
 }
 
-int64_t
-LteEnbMac::AssignStreams (int64_t stream)
-{
-  NS_LOG_FUNCTION (this << stream);
-  m_random->SetStream (stream);
-  return 1;
-}
+//int64_t
+//LteEnbMac::AssignStreams (int64_t stream)
+//{
+//  NS_LOG_FUNCTION (this << stream);
+//  m_random->SetStream (stream);
+//  return 1;
+//}
 
 } // namespace ns3

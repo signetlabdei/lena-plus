@@ -342,7 +342,7 @@ private:
   RapIdPositionMap_t m_receivedRachPreambleCount;
 
   std::map<uint8_t, uint32_t> m_rapIdRntiMap;
-  Ptr<UniformRandomVariable> m_random;
+  //Ptr<UniformRandomVariable> m_random;
 };
 
 } // end namespace ns3
