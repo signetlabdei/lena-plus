@@ -270,6 +270,7 @@ LteUeMac::LteUeMac ()
   m_uePhySapUser = new UeMemberLteUePhySapUser (this);
   m_raPreambleUniformVariable = CreateObject<UniformRandomVariable> ();
   m_backoffTime = CreateObject<UniformRandomVariable> ();
+  m_rachPreambleReady = false;
 }
 
 
