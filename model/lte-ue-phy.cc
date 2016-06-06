@@ -390,6 +390,8 @@ LteUePhy::DoInitialize ()
     {
       Simulator::ScheduleNow (&LteUePhy::SubframeIndication, this, 1, 1);
     }  
+  m_ulEarfcn = 0;
+  m_dlEarfcn = 0;
   LtePhy::DoInitialize ();
 }
 
