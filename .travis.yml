@@ -10,9 +10,9 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      # - g++-5
+      - g++-4.9
 env:
-  # - COMPILER_VERSION="CC=gcc-5 && CXX=g++-5" # Use GCC version 5.4
+  - COMPILER_VERSION="CC=gcc-4.9 && CXX=g++-4.9" # Use GCC version 4.9
 compiler:
   - gcc
 before_install:
