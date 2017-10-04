@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/signetlabdei/lena-plus.svg?branch=master)](https://travis-ci.org/signetlabdei/lena-plus)
+
 # LENA+
 This is a version of the LTE-EPC Network simulAtor extended with a realistic RACH model. It is based on the ns-3 LTE module and backward compatible with it. 
 
