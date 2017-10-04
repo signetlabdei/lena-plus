@@ -1,4 +1,5 @@
 language: cpp
+sudo: required # try trusty with sudo to get more ram
 branches:
   only:
     - master
