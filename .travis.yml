@@ -10,9 +10,9 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - g++-4.9
+      - g++-4.8
 env:
-    - COMPILER_VERSION="CC=gcc-4.9 && CXX=g++-4.9" # Use GCC version 4.9
+    - COMPILER_VERSION="CC=gcc-4.8 && CXX=g++-4.8" # Use GCC version 4.8
 compiler:
   - gcc
 before_install:
@@ -20,6 +20,7 @@ before_install:
   - git clone --depth=1 https://github.com/nsnam/ns-3-dev-git --branch ns-3.25 ns-3.25
   - rm -r ns-3.25/src/lte
   - git clone --depth=1 https://github.com/signetlabdei/lena-plus ns-3.25/src/lte
+  - ls ns-3.25/src/lte/
 script:
   - cd ns-3.25/
-  - ./waf configure --enable-examples --enable-tests && ./waf build
+  - ./waf configure && ./waf build
