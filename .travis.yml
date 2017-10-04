@@ -23,4 +23,4 @@ before_install:
   - ls ns-3.24/src/lte/
 script:
   - cd ns-3.24/
-  - ./waf configure && ./waf build
+  - ./waf configure --enable-tests --enable-examples && ./waf build
